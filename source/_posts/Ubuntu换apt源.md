@@ -1,7 +1,9 @@
 ---
 title: Ubuntu换apt源
 date: 2019-08-28 11:35:12
-tags: linux
+tags: 
+ - linux
+ - ubuntu
 ---
 # 换apt源
 

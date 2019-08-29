@@ -1,9 +1,12 @@
 ---
 title: PyQt5的安装与Pycharm配置
 date: 2019-08-28 14:19:30
-tags:
+categories:
  - python
  - PyQt
+tags:
+ - python
+ - GUI
 ---
 # PyQt5安装与配置
 ## 安装

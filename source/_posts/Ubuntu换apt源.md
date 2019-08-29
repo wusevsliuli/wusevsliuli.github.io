@@ -3,6 +3,8 @@ title: Ubuntu换apt源
 date: 2019-08-28 11:35:12
 categories:
  - linux
+ - ubuntu
+ - apt
 tags: 
  - linux
  - ubuntu

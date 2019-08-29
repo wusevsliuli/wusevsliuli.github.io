@@ -1,6 +1,9 @@
 ---
 title: git快速入门
 date: 2019-08-28 11:51:28
+categories:
+ - 版本控制
+ - git
 tags: git
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: nginx配置文件结构
-date: 2019-08-28 14:33:37
+date: 2019-06-28 14:33:37
 categories:
  - linux
  - nginx

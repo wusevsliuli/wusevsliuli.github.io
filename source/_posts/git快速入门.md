@@ -1,6 +1,6 @@
 ---
 title: git快速入门
-date: 2019-08-28 11:51:28
+date: 2018-05-25 19:51:28
 categories:
  - 版本控制
  - git
@@ -60,6 +60,11 @@ tags: git
 **错误原因**：当前分支主机没有上游分支  
 **处理方法**：
 > git push --set-upstream origin master
+#### push错误  
+![无远程推送权限](git快速入门/无远程推送权限.png)
+**错误原因**：没有远程推送权限
+**处理方法**：
+参见 [github上传项目的时候报出git@github.com: Permission denied (publickey). fatal: Could not read from remote repo](https://blog.csdn.net/weixin_44394753/article/details/91410463)
 
 
 ## 告警原因与处理:

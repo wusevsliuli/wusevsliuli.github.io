@@ -10,7 +10,11 @@ tags:
 ---
 # 基本结构
 
-Nginx默认提供的配置
+### 结构如下图所示
+
+![nginx配置文件结构](nginx配置文件结构/nginx配置文件结构.png)
+
+### Nginx默认提供的配置
 
 ```bash
 user www-data;
@@ -99,12 +103,6 @@ http {
 #       }
 #}
 ```
-
-
-结构如下图所示
-
-![nginx配置文件结构](nginx配置文件结构/nginx配置文件结构.png)
-
 
 参考
 [详解Nginx服务器配置](https://baijiahao.baidu.com/s?id=1604485941272024493&wfr=spider&for=pc)

@@ -4,17 +4,16 @@ date: 2019-05-06 11:35:12
 categories:
  - linux
  - ubuntu
- - apt
 tags: 
  - linux
- - ubuntu
+ - apt
 ---
 # 换apt源
 
-#### 备份原始源数据
+#### step1 备份原始源数据
 > cp /etc/apt/sources.list /etc/apt/sources.list.backup
 
-#### 编辑apt源
+#### step2 编辑apt源
 > vi /etc/apt/sources.list
 
 写入以下内容(阿里源)
@@ -35,7 +34,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
 deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe
 ```
-然后更新源信息（刷新）
+#### step3 更新源信息（刷新）
 > sudo apt-get update
 > sudo apt-get upgrade
 

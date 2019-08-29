@@ -2,9 +2,10 @@
 title: git快速入门
 date: 2018-05-25 19:51:28
 categories:
- - 版本控制
+ - software
  - git
-tags: git
+tags: 
+ - git
 ---
 
 # Git快速入门
@@ -39,7 +40,7 @@ tags: git
 ##### step3: 关联github的repository
 > git remote add origin git@github.com:wusevsliuli/EasyJoin.git
 ##### step4:  add文件
-> git add .
+> git add --all
 ##### step5:  commit文件
 > git commit -m "描述"
 ##### step6:  push代码到远端origin（仅第一次push需要加-u选项）

@@ -167,13 +167,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/nginx配置文件结构/">nginx配置文件结构</a>
+      <a class="article-title" href="/2019/06/28/nginx配置文件结构/">nginx配置文件结构</a>
     </h1>
   
 
         
-        <a href="/2019/08/28/nginx配置文件结构/" class="archive-article-date">
-  	<time datetime="2019-08-28T06:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
+        <a href="/2019/06/28/nginx配置文件结构/" class="archive-article-date">
+  	<time datetime="2019-06-28T06:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-28</time>
 </a>
         
       </header>
@@ -184,7 +184,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">user www-data;</span><br><span class="line">worker_processes auto;</span><br><span class="line">pid /run/nginx.pid;</span><br><span class="line">include /etc/nginx/modules-enabled/*.conf;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">        worker_connections 768;</span><br><span class="line">        <span class="comment"># multi_accept on;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># Basic Settings</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        sendfile on;</span><br><span class="line">        tcp_nopush on;</span><br><span class="line">        tcp_nodelay on;</span><br><span class="line">        keepalive_timeout 65;</span><br><span class="line">        types_hash_max_size 2048;</span><br><span class="line">        <span class="comment"># server_tokens off;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># server_names_hash_bucket_size 64;</span></span><br><span class="line">        <span class="comment"># server_name_in_redirect off;</span></span><br><span class="line"></span><br><span class="line">        include /etc/nginx/mime.types;</span><br><span class="line">        default_type application/octet-stream;</span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># SSL Settings</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        ssl_protocols TLSv1 TLSv1.1 TLSv1.2; <span class="comment"># Dropping SSLv3, ref: POODLE</span></span><br><span class="line">        ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># Logging Settings</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        access_log /var/<span class="built_in">log</span>/nginx/access.log;</span><br><span class="line">        error_log /var/<span class="built_in">log</span>/nginx/error.log;</span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># Gzip Settings</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        gzip on;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># gzip_vary on;</span></span><br><span class="line">        <span class="comment"># gzip_proxied any;</span></span><br><span class="line">        <span class="comment"># gzip_comp_level 6;</span></span><br><span class="line">        <span class="comment"># gzip_buffers 16 8k;</span></span><br><span class="line">        <span class="comment"># gzip_http_version 1.1;</span></span><br><span class="line">        <span class="comment"># gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># Virtual Host Configs</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        include /etc/nginx/conf.d/*.conf;</span><br><span class="line">        include /etc/nginx/sites-enabled/*;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#mail &#123;</span></span><br><span class="line"><span class="comment">#       # See sample authentication script at:</span></span><br><span class="line"><span class="comment">#       # http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#       # auth_http localhost/auth.php;</span></span><br><span class="line"><span class="comment">#       # pop3_capabilities "TOP" "USER";</span></span><br><span class="line"><span class="comment">#       # imap_capabilities "IMAP4rev1" "UIDPLUS";</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#       server &#123;</span></span><br><span class="line"><span class="comment">#               listen     localhost:110;</span></span><br><span class="line"><span class="comment">#               protocol   pop3;</span></span><br><span class="line"><span class="comment">#               proxy      on;</span></span><br><span class="line"><span class="comment">#       &#125;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#       server &#123;</span></span><br><span class="line"><span class="comment">#               listen     localhost:143;</span></span><br><span class="line"><span class="comment">#               protocol   imap;</span></span><br><span class="line"><span class="comment">#               proxy      on;</span></span><br><span class="line"><span class="comment">#       &#125;</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>结构如下图所示</p>
-<p><img src="/2019/08/28/nginx配置文件结构/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84.png" alt="nginx配置文件结构"></p>
+<p><img src="/2019/06/28/nginx配置文件结构/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84.png" alt="nginx配置文件结构"></p>
 <p>参考<br><a href="https://baijiahao.baidu.com/s?id=1604485941272024493&wfr=spider&for=pc" target="_blank" rel="noopener">详解Nginx服务器配置</a></p>
 
       
@@ -228,270 +228,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/28/nginx配置文件结构/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-PyQt5的安装与Pycharm配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/PyQt5的安装与Pycharm配置/">PyQt5的安装与Pycharm配置</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/28/PyQt5的安装与Pycharm配置/" class="archive-article-date">
-  	<time datetime="2019-08-28T06:19:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="PyQt5安装与配置"><a href="#PyQt5安装与配置" class="headerlink" title="PyQt5安装与配置"></a>PyQt5安装与配置</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
-<p>pip install PyQt5<br>pip install pyqt5-tools</p>
-</blockquote>
-<h2 id="配置pycharm"><a href="#配置pycharm" class="headerlink" title="配置pycharm"></a>配置pycharm</h2><p>Setting -&gt; Tools -&gt; Extrater Tools -&gt; +</p>
-<ol>
-<li>PYUIC</li>
-</ol>
-<p><strong>Program</strong>: <em>\python.exe<br>*</em>Parameters**: -m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py </p>
-<ol start="2">
-<li>qtdesigner</li>
-</ol>
-<p><strong>Program</strong>: *\Lib\site-packages\pyqt5-tools\designer.exe</p>
-<h2 id="使用qtdesigner"><a href="#使用qtdesigner" class="headerlink" title="使用qtdesigner"></a>使用qtdesigner</h2><ul>
-<li>pycharm打开qtdesigner<br><img src="/2019/08/28/PyQt5的安装与Pycharm配置/pycharm%E8%AE%BE%E7%BD%AEqtdesigner.jpg" alt="pycharm设置qtdesigner"><br>通过该流程可以快速打开qtdesigner</li>
-<li>手动打开qtdesigner </li>
-<li>\Lib\site-packages\pyqt5-tools\designer.exe</li>
-<li>使用qtdesigner<br><img src="/2019/08/28/PyQt5的安装与Pycharm配置/qtdesigner%E7%95%8C%E9%9D%A2.jpg" alt="qtdesigner界面"><br>基本用法，所见即所得：</li>
-</ul>
-<p>1.从控件栏拖动控件至窗口栏<br>2.在参数栏设置控件显示效果<br>3.绘制完成后将保存为.ui文件</p>
-<ul>
-<li><p>使用pycharm根据.ui文件生成pyqt5的.py文件<br><img src="/2019/08/28/PyQt5的安装与Pycharm配置/%E6%A0%B9%E6%8D%AEPYUIC%E7%94%9F%E6%88%90py%E6%96%87%E4%BB%B6.jpg" alt="根据PYUIC生成py文件"><br>选中.ui文件后，点击PYUIC即可生成对应的.py文件</p>
-</li>
-<li><p>手动生成.py文件<br>命令行输入</p>
-<blockquote>
-<p>python -m PyQt5.uic.pyuic filename.ui -o filename.py  </p>
-</blockquote>
-</li>
-<li><p>生成图形界面<br>新建main.py文件，添加下列代码后执行即可</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding= utf8</span></span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtWidgets, QtGui, QtCore</span><br><span class="line"><span class="keyword">from</span> ui_mainfrm <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    app = QtWidgets.QApplication(sys.argv)</span><br><span class="line">    window = QtWidgets.QMainWindow() <span class="comment"># ui使用的templates\forms是MainWindow</span></span><br><span class="line">    <span class="comment"># window = QtWidgets.QWidget() # ui使用的templates\forms是Widget</span></span><br><span class="line">    <span class="comment"># window = QtWidgets.QDialog() # ui使用的templates\forms是Dialog</span></span><br><span class="line">    main = Ui_MainWindow()</span><br><span class="line">    main.setupUi(window)</span><br><span class="line">    window.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>需要注意的是qtdesigner选择的templates\forms不同，则windows也是不同的<br><img src="/2019/08/28/PyQt5的安装与Pycharm配置/qtdesigner%E7%9A%84templates-forms.jpg" alt="qtdesigner的templates-forms"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GUI</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python/PyQt//" class="article-tag-list-link color5">PyQt</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/28/PyQt5的安装与Pycharm配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-git快速入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/git快速入门/">git快速入门</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/28/git快速入门/" class="archive-article-date">
-  	<time datetime="2019-08-28T03:51:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Git快速入门"><a href="#Git快速入门" class="headerlink" title="Git快速入门"></a>Git快速入门</h1><h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><ol>
-<li>git： Git是一款提供版本控制系统的软件</li>
-<li>github： github是全球最大的<del>同性交友社区</del>软件项目的托管平台，所以我们可以通过git（github也只支持git）将我们的项目托管到github上面<h2 id="git基本操作指令："><a href="#git基本操作指令：" class="headerlink" title="git基本操作指令："></a>git基本操作指令：</h2><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4>未经过初始化的文件夹无法通过git进行版本控制，不同于svn需要另外创建一个repository，初始化后本文件夹既是repository又是master<blockquote>
-<p>git init</p>
-</blockquote>
-<h4 id="add代码（提交代码的第一步）"><a href="#add代码（提交代码的第一步）" class="headerlink" title="add代码（提交代码的第一步）"></a>add代码（提交代码的第一步）</h4><blockquote>
-<p>git add .</p>
-</blockquote>
-<h4 id="commit代码（提交代码的第二步）"><a href="#commit代码（提交代码的第二步）" class="headerlink" title="commit代码（提交代码的第二步）"></a>commit代码（提交代码的第二步）</h4><blockquote>
-<p>git commit -m “描述”</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="git基本查看指令："><a href="#git基本查看指令：" class="headerlink" title="git基本查看指令："></a>git基本查看指令：</h2><h4 id="查看repository和本地add情况"><a href="#查看repository和本地add情况" class="headerlink" title="查看repository和本地add情况"></a>查看repository和本地add情况</h4><blockquote>
-<p>git status</p>
-</blockquote>
-<h4 id="本地对比repository修改情况（不包含新增项，即便add后也不行）"><a href="#本地对比repository修改情况（不包含新增项，即便add后也不行）" class="headerlink" title="本地对比repository修改情况（不包含新增项，即便add后也不行）"></a>本地对比repository修改情况（不包含新增项，即便add后也不行）</h4><blockquote>
-<p>git diff .</p>
-</blockquote>
-<h4 id="查看历史提交记录"><a href="#查看历史提交记录" class="headerlink" title="查看历史提交记录"></a>查看历史提交记录</h4><blockquote>
-<p>git log</p>
-</blockquote>
-<h2 id="git与github交互："><a href="#git与github交互：" class="headerlink" title="git与github交互："></a>git与github交互：</h2><p>前提：github存在一个repository</p>
-<h3 id="场景1：-本地已有一个项目，将该项目托管到github上"><a href="#场景1：-本地已有一个项目，将该项目托管到github上" class="headerlink" title="场景1： 本地已有一个项目，将该项目托管到github上"></a>场景1： 本地已有一个项目，将该项目托管到github上</h3><h4 id="step1-github新增一个repository，用于该项目托管的地方"><a href="#step1-github新增一个repository，用于该项目托管的地方" class="headerlink" title="step1: github新增一个repository，用于该项目托管的地方"></a>step1: github新增一个repository，用于该项目托管的地方</h4><h4 id="step2-初始化"><a href="#step2-初始化" class="headerlink" title="step2:  初始化"></a>step2:  初始化</h4><blockquote>
-<p>git init</p>
-</blockquote>
-<h4 id="step3-关联github的repository"><a href="#step3-关联github的repository" class="headerlink" title="step3: 关联github的repository"></a>step3: 关联github的repository</h4><blockquote>
-<p>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:wusevsliuli/EasyJoin.git</p>
-</blockquote>
-<h4 id="step4-add文件"><a href="#step4-add文件" class="headerlink" title="step4:  add文件"></a>step4:  add文件</h4><blockquote>
-<p>git add .</p>
-</blockquote>
-<h4 id="step5-commit文件"><a href="#step5-commit文件" class="headerlink" title="step5:  commit文件"></a>step5:  commit文件</h4><blockquote>
-<p>git commit -m “描述”</p>
-</blockquote>
-<h4 id="step6-push代码到远端origin（仅第一次push需要加-u选项）"><a href="#step6-push代码到远端origin（仅第一次push需要加-u选项）" class="headerlink" title="step6:  push代码到远端origin（仅第一次push需要加-u选项）"></a>step6:  push代码到远端origin（仅第一次push需要加-u选项）</h4><blockquote>
-<p>git push -u origin</p>
-</blockquote>
-<h4 id="step7-push远端origin代码到master"><a href="#step7-push远端origin代码到master" class="headerlink" title="step7:  push远端origin代码到master"></a>step7:  push远端origin代码到master</h4><blockquote>
-<p>git push origin master</p>
-</blockquote>
-<h2 id="错误情况处理："><a href="#错误情况处理：" class="headerlink" title="错误情况处理："></a>错误情况处理：</h2><h4 id="push错误"><a href="#push错误" class="headerlink" title="push错误"></a>push错误</h4><p><img src="/2019/08/28/git快速入门/%E6%B2%A1%E6%9C%89%E5%B7%B2add%E7%9A%84%E6%96%87%E4%BB%B6.png" alt="没有已add的文件"><br><strong>错误原因</strong>： 目录中没有文件，空目录是不能提交<br><strong>处理方法</strong>：</p>
-<blockquote>
-<p>git add .<br>git commit -m “description”</p>
-</blockquote>
-<h4 id="push错误-1"><a href="#push错误-1" class="headerlink" title="push错误"></a>push错误</h4><p><img src="/2019/08/28/git快速入门/%E6%B2%A1%E6%9C%89%E5%AF%B9%E5%BA%94%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF.png" alt="没有对应的远程分支"><br><strong>错误原因</strong>：当前分支主机没有上游分支<br><strong>处理方法</strong>：</p>
-<blockquote>
-<p>git push –set-upstream origin master</p>
-</blockquote>
-<h2 id="告警原因与处理"><a href="#告警原因与处理" class="headerlink" title="告警原因与处理:"></a>告警原因与处理:</h2><h4 id="push告警"><a href="#push告警" class="headerlink" title="push告警"></a>push告警</h4><p><img src="/2019/08/28/git快速入门/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%91%8A%E8%AD%A6.png" alt="跨平台告警"><br><strong>告警原因</strong>：跨平台的开发情况</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/版本控制//" class="article-tag-list-link color5">版本控制</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/版本控制/git//" class="article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/28/git快速入门/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/06/28/nginx配置文件结构/">展开全文 >></a>
         </p>
       
 
@@ -528,13 +265,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/Ubuntu换apt源/">Ubuntu换apt源</a>
+      <a class="article-title" href="/2019/05/06/Ubuntu换apt源/">Ubuntu换apt源</a>
     </h1>
   
 
         
-        <a href="/2019/08/28/Ubuntu换apt源/" class="archive-article-date">
-  	<time datetime="2019-08-28T03:35:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
+        <a href="/2019/05/06/Ubuntu换apt源/" class="archive-article-date">
+  	<time datetime="2019-05-06T03:35:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-06</time>
 </a>
         
       </header>
@@ -602,7 +339,271 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/28/Ubuntu换apt源/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/06/Ubuntu换apt源/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-git快速入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/25/git快速入门/">git快速入门</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/25/git快速入门/" class="archive-article-date">
+  	<time datetime="2018-05-25T11:51:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Git快速入门"><a href="#Git快速入门" class="headerlink" title="Git快速入门"></a>Git快速入门</h1><h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><ol>
+<li>git： Git是一款提供版本控制系统的软件</li>
+<li>github： github是全球最大的<del>同性交友社区</del>软件项目的托管平台，所以我们可以通过git（github也只支持git）将我们的项目托管到github上面<h2 id="git基本操作指令："><a href="#git基本操作指令：" class="headerlink" title="git基本操作指令："></a>git基本操作指令：</h2><h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5>未经过初始化的文件夹无法通过git进行版本控制，不同于svn需要另外创建一个repository，初始化后本文件夹既是repository又是master<blockquote>
+<p>git init</p>
+</blockquote>
+<h5 id="add代码（提交代码的第一步）"><a href="#add代码（提交代码的第一步）" class="headerlink" title="add代码（提交代码的第一步）"></a>add代码（提交代码的第一步）</h5><blockquote>
+<p>git add .</p>
+</blockquote>
+<h5 id="commit代码（提交代码的第二步）"><a href="#commit代码（提交代码的第二步）" class="headerlink" title="commit代码（提交代码的第二步）"></a>commit代码（提交代码的第二步）</h5><blockquote>
+<p>git commit -m “描述”</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="git基本查看指令："><a href="#git基本查看指令：" class="headerlink" title="git基本查看指令："></a>git基本查看指令：</h2><h5 id="查看repository和本地add情况"><a href="#查看repository和本地add情况" class="headerlink" title="查看repository和本地add情况"></a>查看repository和本地add情况</h5><blockquote>
+<p>git status</p>
+</blockquote>
+<h5 id="本地对比repository修改情况（不包含新增项，即便add后也不行）"><a href="#本地对比repository修改情况（不包含新增项，即便add后也不行）" class="headerlink" title="本地对比repository修改情况（不包含新增项，即便add后也不行）"></a>本地对比repository修改情况（不包含新增项，即便add后也不行）</h5><blockquote>
+<p>git diff .</p>
+</blockquote>
+<h5 id="查看历史提交记录"><a href="#查看历史提交记录" class="headerlink" title="查看历史提交记录"></a>查看历史提交记录</h5><blockquote>
+<p>git log</p>
+</blockquote>
+<h2 id="git与github交互："><a href="#git与github交互：" class="headerlink" title="git与github交互："></a>git与github交互：</h2><p>前提：github存在一个repository</p>
+<h3 id="场景1：-本地已有一个项目，将该项目托管到github上"><a href="#场景1：-本地已有一个项目，将该项目托管到github上" class="headerlink" title="场景1： 本地已有一个项目，将该项目托管到github上"></a>场景1： 本地已有一个项目，将该项目托管到github上</h3><h5 id="step1-github新增一个repository，用于该项目托管的地方"><a href="#step1-github新增一个repository，用于该项目托管的地方" class="headerlink" title="step1: github新增一个repository，用于该项目托管的地方"></a>step1: github新增一个repository，用于该项目托管的地方</h5><h5 id="step2-初始化"><a href="#step2-初始化" class="headerlink" title="step2:  初始化"></a>step2:  初始化</h5><blockquote>
+<p>git init</p>
+</blockquote>
+<h5 id="step3-关联github的repository"><a href="#step3-关联github的repository" class="headerlink" title="step3: 关联github的repository"></a>step3: 关联github的repository</h5><blockquote>
+<p>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:wusevsliuli/EasyJoin.git</p>
+</blockquote>
+<h5 id="step4-add文件"><a href="#step4-add文件" class="headerlink" title="step4:  add文件"></a>step4:  add文件</h5><blockquote>
+<p>git add .</p>
+</blockquote>
+<h5 id="step5-commit文件"><a href="#step5-commit文件" class="headerlink" title="step5:  commit文件"></a>step5:  commit文件</h5><blockquote>
+<p>git commit -m “描述”</p>
+</blockquote>
+<h5 id="step6-push代码到远端origin（仅第一次push需要加-u选项）"><a href="#step6-push代码到远端origin（仅第一次push需要加-u选项）" class="headerlink" title="step6:  push代码到远端origin（仅第一次push需要加-u选项）"></a>step6:  push代码到远端origin（仅第一次push需要加-u选项）</h5><blockquote>
+<p>git push -u origin</p>
+</blockquote>
+<h5 id="step7-push远端origin代码到master"><a href="#step7-push远端origin代码到master" class="headerlink" title="step7:  push远端origin代码到master"></a>step7:  push远端origin代码到master</h5><blockquote>
+<p>git push origin master</p>
+</blockquote>
+<h2 id="错误情况处理："><a href="#错误情况处理：" class="headerlink" title="错误情况处理："></a>错误情况处理：</h2><h3 id="push错误"><a href="#push错误" class="headerlink" title="push错误"></a>push错误</h3><h5 id="1-src-refspec-master-does-not-match-any"><a href="#1-src-refspec-master-does-not-match-any" class="headerlink" title="1. src refspec master does not match any."></a>1. src refspec master does not match any.</h5><p><img src="/2018/05/25/git快速入门/%E6%B2%A1%E6%9C%89%E5%B7%B2add%E7%9A%84%E6%96%87%E4%BB%B6.png" alt="没有已add的文件"><br><strong>错误原因</strong>： 目录中没有文件，空目录是不能提交<br><strong>处理方法</strong>：</p>
+<blockquote>
+<p>git add .<br>git commit -m “description”</p>
+</blockquote>
+<h5 id="2-The-current-branch-master-has-no-upstream-branch"><a href="#2-The-current-branch-master-has-no-upstream-branch" class="headerlink" title="2. The current branch master has no upstream branch."></a>2. The current branch master has no upstream branch.</h5><p><img src="/2018/05/25/git快速入门/%E6%B2%A1%E6%9C%89%E5%AF%B9%E5%BA%94%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF.png" alt="没有对应的远程分支"><br><strong>错误原因</strong>：当前分支主机没有上游分支<br><strong>处理方法</strong>：</p>
+<blockquote>
+<p>git push –set-upstream origin master</p>
+</blockquote>
+<h5 id="3-Permission-denied-publickey-Could-not-read-from-remote-repository"><a href="#3-Permission-denied-publickey-Could-not-read-from-remote-repository" class="headerlink" title="3. Permission denied (publickey). Could not read from remote    repository."></a>3. Permission denied (publickey). Could not read from remote    repository.</h5><p><img src="/2018/05/25/git快速入门/%E6%97%A0%E8%BF%9C%E7%A8%8B%E6%8E%A8%E9%80%81%E6%9D%83%E9%99%90.png" alt="无远程推送权限"><br><strong>错误原因</strong>：没有远程推送权限<br><strong>处理方法</strong>：<br>参见 <a href="https://blog.csdn.net/weixin_44394753/article/details/91410463" target="_blank" rel="noopener">github上传项目的时候报出git@github.com: Permission denied (publickey). fatal: Could not read from remote repo</a></p>
+<h2 id="告警原因与处理"><a href="#告警原因与处理" class="headerlink" title="告警原因与处理:"></a>告警原因与处理:</h2><h3 id="push告警"><a href="#push告警" class="headerlink" title="push告警"></a>push告警</h3><h5 id="1-LF-will-be-replaced-by-CRLF-in-xxx-The-file-will-have-its-original-line-endings-in-your-working-directory"><a href="#1-LF-will-be-replaced-by-CRLF-in-xxx-The-file-will-have-its-original-line-endings-in-your-working-directory" class="headerlink" title="1. LF will be replaced by CRLF in xxx. The file will have its original line endings in your working directory."></a>1. LF will be replaced by CRLF in xxx. The file will have its original line endings in your working directory.</h5><p><img src="/2018/05/25/git快速入门/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%91%8A%E8%AD%A6.png" alt="跨平台告警"><br><strong>告警原因</strong>：跨平台的开发情况</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/版本控制//" class="article-tag-list-link color5">版本控制</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/版本控制/git//" class="article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/25/git快速入门/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-PyQt5的安装与Pycharm配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/18/PyQt5的安装与Pycharm配置/">PyQt5的安装与Pycharm配置</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/18/PyQt5的安装与Pycharm配置/" class="archive-article-date">
+  	<time datetime="2017-12-18T11:12:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="PyQt5安装与配置"><a href="#PyQt5安装与配置" class="headerlink" title="PyQt5安装与配置"></a>PyQt5安装与配置</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<p>pip install PyQt5<br>pip install pyqt5-tools</p>
+</blockquote>
+<h2 id="配置pycharm"><a href="#配置pycharm" class="headerlink" title="配置pycharm"></a>配置pycharm</h2><p>Setting -&gt; Tools -&gt; Extrater Tools -&gt; +</p>
+<ol>
+<li>PYUIC</li>
+</ol>
+<p><strong>Program</strong>: <em>\python.exe<br>*</em>Parameters**: -m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py </p>
+<ol start="2">
+<li>qtdesigner</li>
+</ol>
+<p><strong>Program</strong>: *\Lib\site-packages\pyqt5-tools\designer.exe</p>
+<h2 id="使用qtdesigner"><a href="#使用qtdesigner" class="headerlink" title="使用qtdesigner"></a>使用qtdesigner</h2><ul>
+<li>pycharm打开qtdesigner<br><img src="/2017/12/18/PyQt5的安装与Pycharm配置/pycharm%E8%AE%BE%E7%BD%AEqtdesigner.jpg" alt="pycharm设置qtdesigner"><br>通过该流程可以快速打开qtdesigner</li>
+<li>手动打开qtdesigner </li>
+<li>\Lib\site-packages\pyqt5-tools\designer.exe</li>
+<li>使用qtdesigner<br><img src="/2017/12/18/PyQt5的安装与Pycharm配置/qtdesigner%E7%95%8C%E9%9D%A2.jpg" alt="qtdesigner界面"><br>基本用法，所见即所得：</li>
+</ul>
+<p>1.从控件栏拖动控件至窗口栏<br>2.在参数栏设置控件显示效果<br>3.绘制完成后将保存为.ui文件</p>
+<ul>
+<li><p>使用pycharm根据.ui文件生成pyqt5的.py文件<br><img src="/2017/12/18/PyQt5的安装与Pycharm配置/%E6%A0%B9%E6%8D%AEPYUIC%E7%94%9F%E6%88%90py%E6%96%87%E4%BB%B6.jpg" alt="根据PYUIC生成py文件"><br>选中.ui文件后，点击PYUIC即可生成对应的.py文件</p>
+</li>
+<li><p>手动生成.py文件<br>命令行输入</p>
+<blockquote>
+<p>python -m PyQt5.uic.pyuic filename.ui -o filename.py  </p>
+</blockquote>
+</li>
+<li><p>生成图形界面<br>新建main.py文件，添加下列代码后执行即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding= utf8</span></span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtWidgets, QtGui, QtCore</span><br><span class="line"><span class="keyword">from</span> ui_mainfrm <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    app = QtWidgets.QApplication(sys.argv)</span><br><span class="line">    window = QtWidgets.QMainWindow() <span class="comment"># ui使用的templates\forms是MainWindow</span></span><br><span class="line">    <span class="comment"># window = QtWidgets.QWidget() # ui使用的templates\forms是Widget</span></span><br><span class="line">    <span class="comment"># window = QtWidgets.QDialog() # ui使用的templates\forms是Dialog</span></span><br><span class="line">    main = Ui_MainWindow()</span><br><span class="line">    main.setupUi(window)</span><br><span class="line">    window.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>需要注意的是qtdesigner选择的templates\forms不同，则windows也是不同的<br><img src="/2017/12/18/PyQt5的安装与Pycharm配置/qtdesigner%E7%9A%84templates-forms.jpg" alt="qtdesigner的templates-forms"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GUI</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/python/PyQt//" class="article-tag-list-link color5">PyQt</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/18/PyQt5的安装与Pycharm配置/">展开全文 >></a>
         </p>
       
 

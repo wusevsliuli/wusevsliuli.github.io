@@ -160,6 +160,396 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-pandas快速入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/pandas快速入门/">pandas快速入门</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/10/pandas快速入门/" class="archive-article-date">
+  	<time datetime="2019-09-10T10:24:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Pandas-快速入门"><a href="#Pandas-快速入门" class="headerlink" title="Pandas 快速入门"></a>Pandas 快速入门</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这篇文章通过实例简单的来展示pandas能做些什么，也展示了一些pandas的简单调用方法。<br>快速系统的学习和了解pandas 推荐阅读 <a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html" target="_blank" rel="noopener">10 minutes to pandas</a>。<br>示例场景为小学考试成绩</p>
+<h3 id="生成数据"><a href="#生成数据" class="headerlink" title="生成数据"></a>生成数据</h3><p>这里随机生成1000+条数据，我们以学号作为DataFrame的Index</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_data</span><span class="params">()</span>:</span></span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(random.randint(<span class="number">1000</span>, <span class="number">1200</span>)):</span><br><span class="line">        grade_list =  [<span class="string">'一年级'</span>, <span class="string">'二年级'</span>, <span class="string">'三年级'</span>, <span class="string">'四年级'</span>, <span class="string">'五年级'</span>, <span class="string">'六年级'</span>]</span><br><span class="line">        grade = random.choice(grade_list)</span><br><span class="line">        data.append(&#123;</span><br><span class="line">            <span class="string">'学号'</span>: <span class="string">"&#123;:0&gt;4&#125;&#123;:0&gt;4&#125;"</span>.format(<span class="number">2019</span> - grade_list.index(grade), i),</span><br><span class="line">            <span class="string">'年级'</span>: grade,</span><br><span class="line">            <span class="string">'语文'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'数学'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'英语'</span>: <span class="literal">None</span> <span class="keyword">if</span> grade <span class="keyword">in</span> [<span class="string">'一年级'</span>, <span class="string">'二年级'</span>] <span class="keyword">else</span> random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'品德'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'体育'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'美术'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'音乐'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">    </span><br><span class="line">data = get_random_data()</span><br><span class="line">df = pandas.DataFrame(data, index=[stu[<span class="string">'学号'</span>] <span class="keyword">for</span> stu <span class="keyword">in</span> data])</span><br></pre></td></tr></table></figure>
+
+<h3 id="示例场景"><a href="#示例场景" class="headerlink" title="示例场景"></a>示例场景</h3><h4 id="计算各个年级各学科的平均分"><a href="#计算各个年级各学科的平均分" class="headerlink" title="计算各个年级各学科的平均分"></a>计算各个年级各学科的平均分</h4><blockquote>
+<p>df.groupby(‘年级’).mean()</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image1.png" alt="Image1.png"></p>
+<h4 id="仅显示主学科-语文、数学、英语-的平均分"><a href="#仅显示主学科-语文、数学、英语-的平均分" class="headerlink" title="仅显示主学科(语文、数学、英语)的平均分"></a>仅显示主学科(语文、数学、英语)的平均分</h4><blockquote>
+<p>df.groupby(‘年级’).mean()[[‘语文’, ‘数学’, ‘英语’]]</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image2.png" alt="Image2.png"></p>
+<h4 id="显示五年级的所有学生的成绩"><a href="#显示五年级的所有学生的成绩" class="headerlink" title="显示五年级的所有学生的成绩"></a>显示五年级的所有学生的成绩</h4><blockquote>
+<p>df[df[‘年级’] == ‘五年级’]</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image3.png" alt="Image3.png"><br>如果需要将各个年级分离，即产生6张表，每张表对应一个年级</p>
+<blockquote>
+<p>df5[‘年级’] = ‘五年级’</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image4.png" alt="Image4.png"></p>
+<h4 id="显示五年级中所有英语不及格（低于60分）的学生"><a href="#显示五年级中所有英语不及格（低于60分）的学生" class="headerlink" title="显示五年级中所有英语不及格（低于60分）的学生"></a>显示五年级中所有英语不及格（低于60分）的学生</h4><blockquote>
+<p>df5[df5[‘英语’] &lt; 60]</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image5.png" alt="Image5.png"></p>
+<h4 id="新增总分列为主科（语文、数学、英语）的总分"><a href="#新增总分列为主科（语文、数学、英语）的总分" class="headerlink" title="新增总分列为主科（语文、数学、英语）的总分"></a>新增总分列为主科（语文、数学、英语）的总分</h4><blockquote>
+<p>df[‘总分’] = df.apply(lambda row: row[[‘语文’, ‘数学’, ‘英语’]].sum(skipna=True), axis=1)</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image6.png" alt="Image6.png"><br>或</p>
+<blockquote>
+<p>df[‘总分’] = df[[‘语文’, ‘数学’, ‘英语’]].sum(skipna=True, axis=1, min_count=1)</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image7.png" alt="Image7.png"></p>
+<h4 id="按总分从高到低排序，若总分相同依次按数学-英语-语文来排序"><a href="#按总分从高到低排序，若总分相同依次按数学-英语-语文来排序" class="headerlink" title="按总分从高到低排序，若总分相同依次按数学/英语/语文来排序"></a>按总分从高到低排序，若总分相同依次按数学/英语/语文来排序</h4><blockquote>
+<p>df5.sort_values(by=[‘总分’, ‘数学’, ‘英语’, ‘语文’], ascending=False)</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image8.png" alt="Image8.png"></p>
+<h4 id="按总分从高到低排名并添加排序，总分相同名次相同"><a href="#按总分从高到低排名并添加排序，总分相同名次相同" class="headerlink" title="按总分从高到低排名并添加排序，总分相同名次相同"></a>按总分从高到低排名并添加排序，总分相同名次相同</h4><blockquote>
+<p>df5[‘名次’] = df5[‘总分’].rank(ascending=False, method=’dense’)<br>df5.sort_values(by=’名次’)</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image9.png" alt="Image9.png"></p>
+<h4 id="取出五年级年级前十（仅按顺序取十位）"><a href="#取出五年级年级前十（仅按顺序取十位）" class="headerlink" title="取出五年级年级前十（仅按顺序取十位）"></a>取出五年级年级前十（仅按顺序取十位）</h4><blockquote>
+<p>df5.head(10)</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image10.png" alt="Image10.png"><br>或</p>
+<blockquote>
+<p>df5[:10]</p>
+</blockquote>
+<p><img src="/2019/09/10/pandas快速入门/Image11.png" alt="Image11.png"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/python/pandas//" class="article-tag-list-link color2">pandas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/10/pandas快速入门/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-KMP算法（字符串匹配算法）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/06/KMP算法（字符串匹配算法）/">KMP算法（字符串匹配算法）</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/06/KMP算法（字符串匹配算法）/" class="archive-article-date">
+  	<time datetime="2019-09-06T10:25:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="KMP算法（字符串匹配算法）"><a href="#KMP算法（字符串匹配算法）" class="headerlink" title="KMP算法（字符串匹配算法）"></a>KMP算法（字符串匹配算法）</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析</p>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。</p>
+<p>示例 1:</p>
+<blockquote>
+<p>输入: haystack = “hello”, needle = “ll”<br>输出: 2</p>
+</blockquote>
+<p>示例 2:</p>
+<blockquote>
+<p>输入: haystack = “aaaaa”, needle = “bba”<br>输出: -1<br>说明:</p>
+</blockquote>
+<p>当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。</p>
+<p>来源：<a href="https://leetcode-cn.com/problems/implement-strstr" target="_blank" rel="noopener">力扣（LeetCode）</a></p>
+<h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><h5 id="暴力匹配算法"><a href="#暴力匹配算法" class="headerlink" title="暴力匹配算法"></a>暴力匹配算法</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 暴力匹配算法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_find</span><span class="params">(S, P)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> P:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    i = <span class="number">0</span>  <span class="comment"># S 中匹配 P 的第一个字符的位置，也是最终的返回值</span></span><br><span class="line">    j = <span class="number">0</span>  <span class="comment"># S 中匹配 P 的位置，此时比较的是 S[i+j] ?= P[j]</span></span><br><span class="line">    <span class="keyword">while</span> i + len(P) &lt;= len(S):</span><br><span class="line">        <span class="keyword">if</span> S[i + j] == P[j]:</span><br><span class="line">            <span class="comment"># 相等情况下，j向前移动一位</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> j == len(P):</span><br><span class="line">                <span class="keyword">return</span> i</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 不相等的情况下重置j, 然后i向前移动一位</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h5><p>KMP算法是基于暴力匹配算法的优化<br>文本字符串串为 <strong>S</strong>, 模式串(需要匹配的字符串)为 <strong>P</strong><br>假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置<br>    如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++，继续匹配下一个字符；<br>    如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]。此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。换言之，当匹配失败时，模式串向右移动的位数为：失配字符所在位置 - 失配字符对应的next 值（next 数组的求解会在下文的3.3.3节中详细阐述），即移动的实际位数为：j - next[j]，且此值大于等于1。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">KMP算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/06/KMP算法（字符串匹配算法）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RabbitMQ+Celery异步任务队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/06/RabbitMQ+Celery异步任务队列/">Celery+RabbitMQ异步任务队列</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/06/RabbitMQ+Celery异步任务队列/" class="archive-article-date">
+  	<time datetime="2019-09-06T10:25:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Celery-RabbitMQ异步任务队列"><a href="#Celery-RabbitMQ异步任务队列" class="headerlink" title="Celery+RabbitMQ异步任务队列"></a>Celery+RabbitMQ异步任务队列</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，就需要使用消息队列处理了。</p>
+<p>以下为个人浅显的使用与理解，celery的详细教程参见 <a href="http://docs.jinkan.org/docs/celery/index.html#" target="_blank" rel="noopener">Celery - 分布式任务队列</a></p>
+<h3 id="Celery"><a href="#Celery" class="headerlink" title="Celery"></a>Celery</h3><h4 id="消息队列简述"><a href="#消息队列简述" class="headerlink" title="消息队列简述"></a>消息队列简述</h4><p>Celery是一个消息队列框架，其基本工作流程如下，此流程就是消息队列的实现的流程<br><img src="/2019/09/06/RabbitMQ+Celery异步任务队列/Image1.png" alt="Image1.png"><br>可以看到一个消息队列，需要有三部分组成： <strong>生产者</strong>，<strong>中间人</strong>，<strong>消费者</strong><br><strong>生产者</strong>：图中的<em>user application</em>，产生任务数据<br><strong>中间人</strong>：图中的<em>Broker</em>，保存生产者产生的任务数据直到被消费者取出<br><strong>消费者</strong>：图中的<em>celer worker X</em>，从中间人处取任务数据并执行</p>
+<p>除此之外，Celery还有一个<strong>结果后端</strong>，我们知道，消息队列中消费者执行完任务后的返回值如果没有特殊处理是无处安放的，因此Celery提供了一个<strong>结果后端</strong>用于存储任务的执行返回值</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>celery是python的一个第三方库，所有直接可以使用pip安装</p>
+<blockquote>
+<p>pip install celery</p>
+</blockquote>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>下面是个简单的的celery示例代码</p>
+<h6 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h6><p>需要指定中间人和定义消费者的具体行为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"></span><br><span class="line">app = Celery(main=<span class="string">'tasks'</span>, broken=<span class="string">'amqp://guest@localhost//'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">celery_task1</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> do something</span></span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h6><p>实际中需要放到消息队列的低分，需要指定消费者</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># do something</span></span><br><span class="line">celery_task1.delay(*args, **kwargs)</span><br><span class="line"><span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="中间人"><a href="#中间人" class="headerlink" title="中间人"></a>中间人</h6><p>作为一个服务，接受生产者的数据，并提供给消费者</p>
+<blockquote>
+<p>celery -A <strong><em>tasks</em></strong> worker -l info</p>
+</blockquote>
+<p>这里网上的教程中很多都说 <strong>-A</strong> 参数后面让我们用模块名，其实是不对的。<br><strong>-A</strong> 参数后面是我们Celery实例所在的位置，且跟实例中 <strong>main</strong> 参数也没有任何关系。</p>
+<p>例如，如果我们celery的实例的位置是在 tasks.task1.task1_1 中那么我们的命令将是</p>
+<blockquote>
+<p> celery -A tasks.task1.task1_1 worker -l info</p>
+</blockquote>
+<p>当然如果我们在 tasks 中 import tasks.task1.task1_1 后使用上面的也是可以的（等于说有了两种启动中间人的方法）</p>
+<p>一般来说一个app实例起一个中间人，当然你也可以将所有app实例聚集在一起（import 或者 代码放在一起的方式），然后启动一个中间人来处理所有任务</p>
+<h4 id="环境问题"><a href="#环境问题" class="headerlink" title="环境问题"></a>环境问题</h4><p>windows环境若无法正常使用，请切换celery版本至3.4.0，或使用子系统</p>
+<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><h4 id="选用-RabbitMQ-而不是-Redis-的原因"><a href="#选用-RabbitMQ-而不是-Redis-的原因" class="headerlink" title="选用 RabbitMQ 而不是 Redis 的原因"></a>选用 RabbitMQ 而不是 Redis 的原因</h4><p>使用 <em>celery + redis</em> 作为消息队列有一个坑，redis 作为 celery 的 broker 时，如果一个任务太耗时，任务完成时间超过了 <em>Redis as Broker</em> 的时间（Redis默认为一小时）则任务会被再次分配到worker。从而会被重复执行。所以这边使用 RabbitMQ 作为消息队列了。</p>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><h5 id="windows环境"><a href="#windows环境" class="headerlink" title="windows环境"></a>windows环境</h5><h6 id="安装erlang"><a href="#安装erlang" class="headerlink" title="安装erlang"></a>安装erlang</h6><p>RabbitMQ服务端代码是使用并发式语言Erlang编写的，安装Rabbit MQ的前提是安装Erlang<br>链接：<a href="http://www.erlang.org/downloads" target="_blank" rel="noopener">http://www.erlang.org/downloads</a></p>
+<h6 id="安装RabbitMQ"><a href="#安装RabbitMQ" class="headerlink" title="安装RabbitMQ"></a>安装RabbitMQ</h6><p>下载地址：<a href="http://www.rabbitmq.com/download.html" target="_blank" rel="noopener">http://www.rabbitmq.com/download.html</a></p>
+<h6 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h6><p>erlang 是 安装目录/bin/<br>rabbitmq 是 安装目录/sbin/</p>
+<h6 id="启动RabbitMQ服务"><a href="#启动RabbitMQ服务" class="headerlink" title="启动RabbitMQ服务"></a>启动RabbitMQ服务</h6><p>默认情况下会自动启动的，如果没有自动启动可以通过下面这个命令启动</p>
+<blockquote>
+<p>rabbitmq-service.bat start</p>
+</blockquote>
+<p>停止服务</p>
+<blockquote>
+<p>rabbitmq-service.bat stop</p>
+</blockquote>
+<h6 id="RabbitMQ管理后台"><a href="#RabbitMQ管理后台" class="headerlink" title="RabbitMQ管理后台"></a>RabbitMQ管理后台</h6><p>使用 RabbitMQ 管理后台需要先启用</p>
+<blockquote>
+<p>rabbitmq-plugins.bat enable rabbitmq_management</p>
+</blockquote>
+<p>然后访问 <a href="http://localhost:15672/" target="_blank" rel="noopener">http://localhost:15672/</a> 即可进入管理后台</p>
+<h5 id="Linux环境"><a href="#Linux环境" class="headerlink" title="Linux环境"></a>Linux环境</h5><h6 id="安装erlang-1"><a href="#安装erlang-1" class="headerlink" title="安装erlang"></a>安装erlang</h6><blockquote>
+<p>sudo apt-get install erlang-nox</p>
+</blockquote>
+<h6 id="安装RabbitMQ-1"><a href="#安装RabbitMQ-1" class="headerlink" title="安装RabbitMQ"></a>安装RabbitMQ</h6><blockquote>
+<p>sudo apt-get install rabbitmq-server</p>
+</blockquote>
+<h6 id="启动RabbitMQ服务-1"><a href="#启动RabbitMQ服务-1" class="headerlink" title="启动RabbitMQ服务"></a>启动RabbitMQ服务</h6><blockquote>
+<p>sudo rabbitmq-server start</p>
+</blockquote>
+<p> 停止服务</p>
+<blockquote>
+<p>sudo rabbitmq-server stop</p>
+</blockquote>
+<h6 id="RabbitMQ管理后台-1"><a href="#RabbitMQ管理后台-1" class="headerlink" title="RabbitMQ管理后台"></a>RabbitMQ管理后台</h6><blockquote>
+<p>sudo rabbitmq-plugins enable rabbitmq_management</p>
+</blockquote>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
+<li><a href="https://www.cnblogs.com/valor-xh/p/6348009.html" target="_blank" rel="noopener">各类消息队列 rabbitMQ/activeMQ/zeroMQ/Kafka/Redis 的比较</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">rabbitmq</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">celery</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/python/celery//" class="article-tag-list-link color2">celery</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/06/RabbitMQ+Celery异步任务队列/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-最短编辑距离算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -215,11 +605,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">algorithms</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">最短编辑距离算法</a>
         		</li>
       		
 		</ul>
@@ -231,7 +617,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/algorithms//" class="article-tag-list-link color1">algorithms</a>
+        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -307,10 +693,6 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
         		</li>
       		
@@ -323,11 +705,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
+        			<a href="/categories/工具-软件-服务//" class="article-tag-list-link color4">工具/软件/服务</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/linux/nginx//" class="article-tag-list-link color1">nginx</a>
+        			<a href="/categories/工具-软件-服务/nginx//" class="article-tag-list-link color1">nginx</a>
         		</li>
       		
 		</ul>
@@ -413,11 +795,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">apt</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">apt换源</a>
         		</li>
       		
 		</ul>
@@ -568,11 +946,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/software//" class="article-tag-list-link color4">software</a>
+        			<a href="/categories/工具-软件-服务//" class="article-tag-list-link color4">工具/软件/服务</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/software/git//" class="article-tag-list-link color4">git</a>
+        			<a href="/categories/工具-软件-服务/git//" class="article-tag-list-link color4">git</a>
         		</li>
       		
 		</ul>
@@ -677,11 +1055,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">PyQt</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">PyQt5</a>
         		</li>
       		
 		</ul>
@@ -693,11 +1067,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/GUI//" class="article-tag-list-link color4">GUI</a>
+        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/GUI/python//" class="article-tag-list-link color2">python</a>
+        			<a href="/categories/python/图形化//" class="article-tag-list-link color4">图形化</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/python/图形化/PyQt//" class="article-tag-list-link color5">PyQt</a>
         		</li>
       		
 		</ul>
@@ -829,14 +1207,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">PyQt</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -845,7 +1215,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">apt</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -853,7 +1231,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color5">PyQt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">apt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">最短编辑距离算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">KMP算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PyQt5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">celery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
               </li>
             
             <div class="clearfix"></div>

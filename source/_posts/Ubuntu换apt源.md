@@ -5,8 +5,7 @@ categories:
  - linux
  - ubuntu
 tags: 
- - linux
- - apt
+ - apt换源
 ---
 # 换apt源
 

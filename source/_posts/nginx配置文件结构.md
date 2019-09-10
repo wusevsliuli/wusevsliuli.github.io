@@ -2,10 +2,9 @@
 title: nginx配置文件结构
 date: 2019-06-28 14:33:37
 categories:
- - linux
+ - 工具/软件/服务
  - nginx
 tags:
- - linux
  - nginx
 ---
 # 基本结构

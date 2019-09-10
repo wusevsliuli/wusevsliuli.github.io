@@ -2,7 +2,7 @@
 title: git快速入门
 date: 2018-05-25 19:51:28
 categories:
- - software
+ - 工具/软件/服务
  - git
 tags: 
  - git

@@ -6,16 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>梯度下降算法.md | 你竟然吃香菜&#39;s NoteBook</title>
+  <title>最短编辑距离算法 | 你竟然吃香菜&#39;s NoteBook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="梯度下降算法.md">
-<meta property="og:url" content="http://yoursite.com/2019/10/30/梯度下降算法/index.html">
+  <meta name="description" content="梯度下降算法最近在学习机器学习的相关知识，碰到的第一个机器学习算法便是这个梯度下降算法，以下为个人对此算法的理解，以及算法的实现 算法描述设多元回归方程为需要注意的是 h(x) 中的 x 表示的是 x0 ~ xn，是多个参数。其中x0 = 1该方程等价于矩阵乘法其中该多元回归的代价函数（均方差代价函数）为：其中m为样本个数，n为维度，i表示第几个样本其梯度矩阵为根据梯度下降的算法，表达式为直到 $">
+<meta name="keywords" content="最短编辑距离算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最短编辑距离算法">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/梯度下降算法/index.html">
 <meta property="og:site_name" content="你竟然吃香菜&#39;s NoteBook">
+<meta property="og:description" content="梯度下降算法最近在学习机器学习的相关知识，碰到的第一个机器学习算法便是这个梯度下降算法，以下为个人对此算法的理解，以及算法的实现 算法描述设多元回归方程为需要注意的是 h(x) 中的 x 表示的是 x0 ~ xn，是多个参数。其中x0 = 1该方程等价于矩阵乘法其中该多元回归的代价函数（均方差代价函数）为：其中m为样本个数，n为维度，i表示第几个样本其梯度矩阵为根据梯度下降的算法，表达式为直到 $">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-30T02:29:21.105Z">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image1.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image2.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image3.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image4.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image5.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image6.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image7.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image8.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image9.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image10.png">
+<meta property="og:updated_time" content="2019-10-30T03:21:38.402Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="梯度下降算法.md">
+<meta name="twitter:title" content="最短编辑距离算法">
+<meta name="twitter:description" content="梯度下降算法最近在学习机器学习的相关知识，碰到的第一个机器学习算法便是这个梯度下降算法，以下为个人对此算法的理解，以及算法的实现 算法描述设多元回归方程为需要注意的是 h(x) 中的 x 表示的是 x0 ~ xn，是多个参数。其中x0 = 1该方程等价于矩阵乘法其中该多元回归的代价函数（均方差代价函数）为：其中m为样本个数，n为维度，i表示第几个样本其梯度矩阵为根据梯度下降的算法，表达式为直到 $">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/29/梯度下降算法/Image1.png">
   
     <link rel="alternative" href="/atom.xml" title="你竟然吃香菜&#39;s NoteBook" type="application/atom+xml">
   
@@ -166,20 +181,22 @@
         
   
     <h1 class="article-title" itemprop="name">
-      梯度下降算法.md
+      最短编辑距离算法
     </h1>
   
 
         
-        <a href="/2019/10/30/梯度下降算法/" class="archive-article-date">
-  	<time datetime="2019-10-30T02:28:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-30</time>
+        <a href="/2019/08/29/梯度下降算法/" class="archive-article-date">
+  	<time datetime="2019-08-29T03:16:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h1><p>最近在学习机器学习的相关知识，碰到的第一个机器学习算法便是这个梯度下降算法，以下为个人对此算法的理解，以及算法的实现</p>
+<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>设多元回归方程为<br><img src="/2019/08/29/梯度下降算法/Image1.png" alt="Image1.png"><br>需要注意的是 h(x) 中的 x 表示的是 x0 ~ xn，是多个参数。其中x0 = 1<br>该方程等价于矩阵乘法<br><img src="/2019/08/29/梯度下降算法/Image2.png" alt="Image2.png"><br>其中<br><img src="/2019/08/29/梯度下降算法/Image3.png" alt="Image3.png"><br><img src="/2019/08/29/梯度下降算法/Image4.png" alt="Image4.png"><br><img src="/2019/08/29/梯度下降算法/Image5.png" alt="Image5.png"><br>该多元回归的代价函数（均方差代价函数）为：<br><img src="/2019/08/29/梯度下降算法/Image6.png" alt="Image6.png"><br>其中m为样本个数，n为维度，i表示第几个样本<br>其梯度矩阵为<br><img src="/2019/08/29/梯度下降算法/Image7.png" alt="Image7.png"><br>根据梯度下降的算法，表达式为<br><img src="/2019/08/29/梯度下降算法/Image8.png" alt="Image8.png"><br>直到 $\Theta$ 足够小（收敛）<br>将梯度项函数表达式为<br><img src="/2019/08/29/梯度下降算法/Image9.png" alt="Image9.png"><br>则可以将梯度矩阵转化为为<br><img src="/2019/08/29/梯度下降算法/Image10.png" alt="Image10.png"></p>
+<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 样本</span></span><br><span class="line">SAMPLE = [</span><br><span class="line">    (<span class="number">1</span>, <span class="number">3</span>),</span><br><span class="line">    (<span class="number">2</span>, <span class="number">4</span>),</span><br><span class="line">    (<span class="number">3</span>, <span class="number">5</span>),</span><br><span class="line">    (<span class="number">4</span>, <span class="number">5</span>),</span><br><span class="line">    (<span class="number">5</span>, <span class="number">2</span>),</span><br><span class="line">    (<span class="number">6</span>, <span class="number">4</span>),</span><br><span class="line">    (<span class="number">7</span>, <span class="number">7</span>),</span><br><span class="line">    (<span class="number">8</span>, <span class="number">8</span>),</span><br><span class="line">    (<span class="number">9</span>, <span class="number">11</span>),</span><br><span class="line">    (<span class="number">10</span>, <span class="number">8</span>),</span><br><span class="line">    (<span class="number">11</span>, <span class="number">12</span>),</span><br><span class="line">    (<span class="number">12</span>, <span class="number">11</span>),</span><br><span class="line">    (<span class="number">13</span>, <span class="number">13</span>),</span><br><span class="line">    (<span class="number">14</span>, <span class="number">13</span>),</span><br><span class="line">    (<span class="number">15</span>, <span class="number">16</span>),</span><br><span class="line">    (<span class="number">16</span>, <span class="number">17</span>),</span><br><span class="line">    (<span class="number">17</span>, <span class="number">18</span>),</span><br><span class="line">    (<span class="number">18</span>, <span class="number">17</span>),</span><br><span class="line">    (<span class="number">19</span>, <span class="number">19</span>),</span><br><span class="line">    (<span class="number">20</span>, <span class="number">21</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">m = len(SAMPLE)  <span class="comment"># 样本个数</span></span><br><span class="line">n = <span class="number">2</span>  <span class="comment"># x 元素个数</span></span><br><span class="line">limit = <span class="number">1e-5</span>  <span class="comment"># 收敛值</span></span><br><span class="line"></span><br><span class="line">X0 = numpy.ones((m, <span class="number">1</span>))  <span class="comment"># x0的矩阵</span></span><br><span class="line">X1 = numpy.array([itm[<span class="number">0</span>] <span class="keyword">for</span> itm <span class="keyword">in</span> SAMPLE]).reshape(m, <span class="number">1</span>)  <span class="comment"># x1的矩阵</span></span><br><span class="line"><span class="comment"># Xn = numpy.array([itm[n] for itm in SAMPLE]).reshape(m, 1)  # Xn的矩阵</span></span><br><span class="line">X = numpy.hstack((X0, X1))</span><br><span class="line"><span class="comment"># X = numpy.hstack((X0, X1, ..., Xn))</span></span><br><span class="line"></span><br><span class="line">Y = numpy.array([itm[<span class="number">-1</span>] <span class="keyword">for</span> itm <span class="keyword">in</span> SAMPLE]).reshape(m, <span class="number">1</span>)  <span class="comment"># y的矩阵</span></span><br><span class="line"></span><br><span class="line">alpha = <span class="number">0.01</span>  <span class="comment"># 学习率</span></span><br><span class="line"></span><br><span class="line">THETA = numpy.array([<span class="number">2</span>, <span class="number">2</span>]).reshape(<span class="number">2</span>, <span class="number">1</span>)  <span class="comment"># 起始选择的 theta0, theta1的值</span></span><br><span class="line"><span class="comment"># THETA = numpy.array([2, 2, ..., 2]).reshape(n, 1)  # 起始选择的 theta0, theta1, thetan的值</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">error_function</span><span class="params">(theta, X, Y)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    代价函数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param theta:</span></span><br><span class="line"><span class="string">    :param X:</span></span><br><span class="line"><span class="string">    :param Y:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    diff = numpy.dot(X, theta) - Y  <span class="comment">#</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / (<span class="number">2</span> * m) * numpy.dot(diff.T, diff)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradient_function</span><span class="params">(theta, X, Y)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    梯度下降</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param theta:</span></span><br><span class="line"><span class="string">    :param X:</span></span><br><span class="line"><span class="string">    :param Y:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    diff = numpy.dot(X, theta) - Y</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / m * numpy.dot(X.T, diff)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradient_descent</span><span class="params">()</span>:</span></span><br><span class="line">    theta = THETA</span><br><span class="line">    gradient = gradient_function(theta, X, Y)</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> numpy.all(numpy.absolute(gradient) &lt;= limit):</span><br><span class="line">        theta = theta - alpha * gradient</span><br><span class="line">        gradient = gradient_function(theta, X, Y)</span><br><span class="line">    <span class="keyword">return</span> theta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    theta = gradient_descent()</span><br><span class="line">    J_theta = error_function(theta, X, Y)</span><br><span class="line">    print(theta)</span><br><span class="line">    print(J_theta)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -187,7 +204,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">最短编辑距离算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法/机器学习//" class="article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -200,9 +243,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/08/29/最短编辑距离算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          最短编辑距离算法
+        
+      </div>
+    </a>
   
-    <a href="/2019/09/10/pandas快速入门/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">pandas快速入门</div>
+  
+    <a href="/2019/06/28/nginx配置文件结构/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nginx配置文件结构</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -229,7 +281,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#梯度下降算法"><span class="toc-number">1.</span> <span class="toc-text">梯度下降算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法描述"><span class="toc-number">1.0.1.</span> <span class="toc-text">算法描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现代码"><span class="toc-number">1.0.2.</span> <span class="toc-text">实现代码</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -345,6 +397,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">KMP算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
@@ -357,11 +413,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">KMP算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">最短编辑距离算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -369,11 +421,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+                <a href="javascript:void(0)" class="js-tag color4">最短编辑距离算法</a>
               </li>
             
             <div class="clearfix"></div>

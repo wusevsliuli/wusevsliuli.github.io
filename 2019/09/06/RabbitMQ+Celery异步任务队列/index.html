@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Celery+RabbitMQ异步任务队列 | 你竟然吃香菜&#39;s NoteBook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Celery+RabbitMQ异步任务队列前言后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，就需要使用消息队列处理了。 以下为个人浅显的使用与理解，celery的详细教程参见 Celery - 分布式任务队列 Celery消息队列简述Celery是一个消息队列框架，其基本工作流程如下，此流程就是消">
+  <meta name="description" content="后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，这时就需要使用消息队列进行处理了。">
 <meta name="keywords" content="celery,rabbitmq">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Celery+RabbitMQ异步任务队列">
 <meta property="og:url" content="http://yoursite.com/2019/09/06/RabbitMQ+Celery异步任务队列/index.html">
 <meta property="og:site_name" content="你竟然吃香菜&#39;s NoteBook">
-<meta property="og:description" content="Celery+RabbitMQ异步任务队列前言后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，就需要使用消息队列处理了。 以下为个人浅显的使用与理解，celery的详细教程参见 Celery - 分布式任务队列 Celery消息队列简述Celery是一个消息队列框架，其基本工作流程如下，此流程就是消">
+<meta property="og:description" content="后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，这时就需要使用消息队列进行处理了。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/09/06/RabbitMQ+Celery异步任务队列/Image1.png">
-<meta property="og:updated_time" content="2019-09-10T08:48:18.681Z">
+<meta property="og:updated_time" content="2019-11-19T12:38:55.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Celery+RabbitMQ异步任务队列">
-<meta name="twitter:description" content="Celery+RabbitMQ异步任务队列前言后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，就需要使用消息队列处理了。 以下为个人浅显的使用与理解，celery的详细教程参见 Celery - 分布式任务队列 Celery消息队列简述Celery是一个消息队列框架，其基本工作流程如下，此流程就是消">
+<meta name="twitter:description" content="后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，这时就需要使用消息队列进行处理了。">
 <meta name="twitter:image" content="http://yoursite.com/2019/09/06/RabbitMQ+Celery异步任务队列/Image1.png">
   
     <link rel="alternative" href="/atom.xml" title="你竟然吃香菜&#39;s NoteBook" type="application/atom+xml">
@@ -185,8 +185,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Celery-RabbitMQ异步任务队列"><a href="#Celery-RabbitMQ异步任务队列" class="headerlink" title="Celery+RabbitMQ异步任务队列"></a>Celery+RabbitMQ异步任务队列</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，就需要使用消息队列处理了。</p>
-<p>以下为个人浅显的使用与理解，celery的详细教程参见 <a href="http://docs.jinkan.org/docs/celery/index.html#" target="_blank" rel="noopener">Celery - 分布式任务队列</a></p>
+        <p>后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，这时就需要使用消息队列进行处理了。</p>
+<a id="more"></a>
+<p>celery的详细教程参见 <a href="http://docs.jinkan.org/docs/celery/index.html#" target="_blank" rel="noopener">Celery - 分布式任务队列</a></p>
 <h3 id="Celery"><a href="#Celery" class="headerlink" title="Celery"></a>Celery</h3><h4 id="消息队列简述"><a href="#消息队列简述" class="headerlink" title="消息队列简述"></a>消息队列简述</h4><p>Celery是一个消息队列框架，其基本工作流程如下，此流程就是消息队列的实现的流程<br><img src="/2019/09/06/RabbitMQ+Celery异步任务队列/Image1.png" alt="Image1.png"><br>可以看到一个消息队列，需要有三部分组成： <strong>生产者</strong>，<strong>中间人</strong>，<strong>消费者</strong><br><strong>生产者</strong>：图中的<em>user application</em>，产生任务数据<br><strong>中间人</strong>：图中的<em>Broker</em>，保存生产者产生的任务数据直到被消费者取出<br><strong>消费者</strong>：图中的<em>celer worker X</em>，从中间人处取任务数据并执行</p>
 <p>除此之外，Celery还有一个<strong>结果后端</strong>，我们知道，消息队列中消费者执行完任务后的返回值如果没有特殊处理是无处安放的，因此Celery提供了一个<strong>结果后端</strong>用于存储任务的执行返回值</p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>celery是python的一个第三方库，所有直接可以使用pip安装</p>
@@ -279,10 +280,6 @@
         		<li class="article-tag-list-item">
         			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python/celery//" class="article-tag-list-link color2">celery</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -337,7 +334,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Celery-RabbitMQ异步任务队列"><span class="toc-number">1.</span> <span class="toc-text">Celery+RabbitMQ异步任务队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Celery"><span class="toc-number">1.0.2.</span> <span class="toc-text">Celery</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#消息队列简述"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">消息队列简述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#消费者"><span class="toc-number">1.0.2.3.0.1.</span> <span class="toc-text">消费者</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#生产者"><span class="toc-number">1.0.2.3.0.2.</span> <span class="toc-text">生产者</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中间人"><span class="toc-number">1.0.2.3.0.3.</span> <span class="toc-text">中间人</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#环境问题"><span class="toc-number">1.0.2.4.</span> <span class="toc-text">环境问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RabbitMQ"><span class="toc-number">1.0.3.</span> <span class="toc-text">RabbitMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#选用-RabbitMQ-而不是-Redis-的原因"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">选用 RabbitMQ 而不是 Redis 的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-1"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#windows环境"><span class="toc-number">1.0.3.2.1.</span> <span class="toc-text">windows环境</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#安装erlang"><span class="toc-number">1.0.3.2.1.1.</span> <span class="toc-text">安装erlang</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#安装RabbitMQ"><span class="toc-number">1.0.3.2.1.2.</span> <span class="toc-text">安装RabbitMQ</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#配置环境变量"><span class="toc-number">1.0.3.2.1.3.</span> <span class="toc-text">配置环境变量</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动RabbitMQ服务"><span class="toc-number">1.0.3.2.1.4.</span> <span class="toc-text">启动RabbitMQ服务</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#RabbitMQ管理后台"><span class="toc-number">1.0.3.2.1.5.</span> <span class="toc-text">RabbitMQ管理后台</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Linux环境"><span class="toc-number">1.0.3.2.2.</span> <span class="toc-text">Linux环境</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#安装erlang-1"><span class="toc-number">1.0.3.2.2.1.</span> <span class="toc-text">安装erlang</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#安装RabbitMQ-1"><span class="toc-number">1.0.3.2.2.2.</span> <span class="toc-text">安装RabbitMQ</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动RabbitMQ服务-1"><span class="toc-number">1.0.3.2.2.3.</span> <span class="toc-text">启动RabbitMQ服务</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#RabbitMQ管理后台-1"><span class="toc-number">1.0.3.2.2.4.</span> <span class="toc-text">RabbitMQ管理后台</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考资料"><span class="toc-number">1.0.3.3.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Celery"><span class="toc-number">1.</span> <span class="toc-text">Celery</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#消息队列简述"><span class="toc-number">1.1.</span> <span class="toc-text">消息队列简述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用"><span class="toc-number">1.3.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#消费者"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">消费者</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#生产者"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">生产者</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中间人"><span class="toc-number">1.3.0.3.</span> <span class="toc-text">中间人</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#环境问题"><span class="toc-number">1.4.</span> <span class="toc-text">环境问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RabbitMQ"><span class="toc-number">2.</span> <span class="toc-text">RabbitMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#选用-RabbitMQ-而不是-Redis-的原因"><span class="toc-number">2.1.</span> <span class="toc-text">选用 RabbitMQ 而不是 Redis 的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-1"><span class="toc-number">2.2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#windows环境"><span class="toc-number">2.2.1.</span> <span class="toc-text">windows环境</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#安装erlang"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">安装erlang</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#安装RabbitMQ"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">安装RabbitMQ</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#配置环境变量"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">配置环境变量</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动RabbitMQ服务"><span class="toc-number">2.2.1.4.</span> <span class="toc-text">启动RabbitMQ服务</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#RabbitMQ管理后台"><span class="toc-number">2.2.1.5.</span> <span class="toc-text">RabbitMQ管理后台</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Linux环境"><span class="toc-number">2.2.2.</span> <span class="toc-text">Linux环境</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#安装erlang-1"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">安装erlang</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#安装RabbitMQ-1"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">安装RabbitMQ</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动RabbitMQ服务-1"><span class="toc-number">2.2.2.3.</span> <span class="toc-text">启动RabbitMQ服务</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#RabbitMQ管理后台-1"><span class="toc-number">2.2.2.4.</span> <span class="toc-text">RabbitMQ管理后台</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考资料"><span class="toc-number">2.3.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -449,15 +446,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PyQt5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">KMP算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,11 +466,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,6 +475,38 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">最短编辑距离算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">梯度下降算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">apt-get换源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最小二乘法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
               </li>
             
             <div class="clearfix"></div>

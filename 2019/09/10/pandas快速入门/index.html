@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>pandas快速入门 | 你竟然吃香菜&#39;s NoteBook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Pandas 快速入门前言这篇文章通过实例简单的来展示pandas能做些什么，也展示了一些pandas的简单调用方法。快速系统的学习和了解pandas 推荐阅读 10 minutes to pandas。示例场景为小学考试成绩 生成数据这里随机生成1000+条数据，我们以学号作为DataFrame的Index 1234567891011121314151617181920212223import">
+  <meta name="description" content="Pandas是Python用于数据分析的最流行的库，以下以小学考试成绩为示例，展示Pandas的使用">
 <meta name="keywords" content="pandas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pandas快速入门">
 <meta property="og:url" content="http://yoursite.com/2019/09/10/pandas快速入门/index.html">
 <meta property="og:site_name" content="你竟然吃香菜&#39;s NoteBook">
-<meta property="og:description" content="Pandas 快速入门前言这篇文章通过实例简单的来展示pandas能做些什么，也展示了一些pandas的简单调用方法。快速系统的学习和了解pandas 推荐阅读 10 minutes to pandas。示例场景为小学考试成绩 生成数据这里随机生成1000+条数据，我们以学号作为DataFrame的Index 1234567891011121314151617181920212223import">
+<meta property="og:description" content="Pandas是Python用于数据分析的最流行的库，以下以小学考试成绩为示例，展示Pandas的使用">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/09/10/pandas快速入门/Image1.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/10/pandas快速入门/Image2.png">
@@ -27,10 +27,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/10/pandas快速入门/Image9.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/10/pandas快速入门/Image10.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/10/pandas快速入门/Image11.png">
-<meta property="og:updated_time" content="2019-09-10T08:40:52.664Z">
+<meta property="og:updated_time" content="2019-11-19T12:42:10.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pandas快速入门">
-<meta name="twitter:description" content="Pandas 快速入门前言这篇文章通过实例简单的来展示pandas能做些什么，也展示了一些pandas的简单调用方法。快速系统的学习和了解pandas 推荐阅读 10 minutes to pandas。示例场景为小学考试成绩 生成数据这里随机生成1000+条数据，我们以学号作为DataFrame的Index 1234567891011121314151617181920212223import">
+<meta name="twitter:description" content="Pandas是Python用于数据分析的最流行的库，以下以小学考试成绩为示例，展示Pandas的使用">
 <meta name="twitter:image" content="http://yoursite.com/2019/09/10/pandas快速入门/Image1.png">
   
     <link rel="alternative" href="/atom.xml" title="你竟然吃香菜&#39;s NoteBook" type="application/atom+xml">
@@ -195,7 +195,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Pandas-快速入门"><a href="#Pandas-快速入门" class="headerlink" title="Pandas 快速入门"></a>Pandas 快速入门</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这篇文章通过实例简单的来展示pandas能做些什么，也展示了一些pandas的简单调用方法。<br>快速系统的学习和了解pandas 推荐阅读 <a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html" target="_blank" rel="noopener">10 minutes to pandas</a>。<br>示例场景为小学考试成绩</p>
+        <p>Pandas是Python用于数据分析的最流行的库，以下以<strong>小学考试成绩</strong>为示例，展示Pandas的使用</p>
+<a id="more"></a>
+<p>快速系统的学习和了解pandas 推荐阅读 <a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html" target="_blank" rel="noopener">10 minutes to pandas</a>。</p>
 <h3 id="生成数据"><a href="#生成数据" class="headerlink" title="生成数据"></a>生成数据</h3><p>这里随机生成1000+条数据，我们以学号作为DataFrame的Index</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_data</span><span class="params">()</span>:</span></span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(random.randint(<span class="number">1000</span>, <span class="number">1200</span>)):</span><br><span class="line">        grade_list =  [<span class="string">'一年级'</span>, <span class="string">'二年级'</span>, <span class="string">'三年级'</span>, <span class="string">'四年级'</span>, <span class="string">'五年级'</span>, <span class="string">'六年级'</span>]</span><br><span class="line">        grade = random.choice(grade_list)</span><br><span class="line">        data.append(&#123;</span><br><span class="line">            <span class="string">'学号'</span>: <span class="string">"&#123;:0&gt;4&#125;&#123;:0&gt;4&#125;"</span>.format(<span class="number">2019</span> - grade_list.index(grade), i),</span><br><span class="line">            <span class="string">'年级'</span>: grade,</span><br><span class="line">            <span class="string">'语文'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'数学'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'英语'</span>: <span class="literal">None</span> <span class="keyword">if</span> grade <span class="keyword">in</span> [<span class="string">'一年级'</span>, <span class="string">'二年级'</span>] <span class="keyword">else</span> random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'品德'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'体育'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'美术'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'音乐'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">    </span><br><span class="line">data = get_random_data()</span><br><span class="line">df = pandas.DataFrame(data, index=[stu[<span class="string">'学号'</span>] <span class="keyword">for</span> stu <span class="keyword">in</span> data])</span><br></pre></td></tr></table></figure>
 
@@ -270,10 +272,6 @@
         		<li class="article-tag-list-item">
         			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python/pandas//" class="article-tag-list-link color2">pandas</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -289,6 +287,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/10/29/梯度下降算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          梯度下降算法
+        
+      </div>
+    </a>
   
   
     <a href="/2019/09/06/KMP算法（字符串匹配算法）/" id="article-nav-older" class="article-nav-link-wrap">
@@ -319,7 +326,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Pandas-快速入门"><span class="toc-number">1.</span> <span class="toc-text">Pandas 快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成数据"><span class="toc-number">1.0.2.</span> <span class="toc-text">生成数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例场景"><span class="toc-number">1.0.3.</span> <span class="toc-text">示例场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#计算各个年级各学科的平均分"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">计算各个年级各学科的平均分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#仅显示主学科-语文、数学、英语-的平均分"><span class="toc-number">1.0.3.2.</span> <span class="toc-text">仅显示主学科(语文、数学、英语)的平均分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示五年级的所有学生的成绩"><span class="toc-number">1.0.3.3.</span> <span class="toc-text">显示五年级的所有学生的成绩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示五年级中所有英语不及格（低于60分）的学生"><span class="toc-number">1.0.3.4.</span> <span class="toc-text">显示五年级中所有英语不及格（低于60分）的学生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#新增总分列为主科（语文、数学、英语）的总分"><span class="toc-number">1.0.3.5.</span> <span class="toc-text">新增总分列为主科（语文、数学、英语）的总分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按总分从高到低排序，若总分相同依次按数学-英语-语文来排序"><span class="toc-number">1.0.3.6.</span> <span class="toc-text">按总分从高到低排序，若总分相同依次按数学/英语/语文来排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按总分从高到低排名并添加排序，总分相同名次相同"><span class="toc-number">1.0.3.7.</span> <span class="toc-text">按总分从高到低排名并添加排序，总分相同名次相同</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取出五年级年级前十（仅按顺序取十位）"><span class="toc-number">1.0.3.8.</span> <span class="toc-text">取出五年级年级前十（仅按顺序取十位）</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成数据"><span class="toc-number">1.</span> <span class="toc-text">生成数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例场景"><span class="toc-number">2.</span> <span class="toc-text">示例场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#计算各个年级各学科的平均分"><span class="toc-number">2.1.</span> <span class="toc-text">计算各个年级各学科的平均分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#仅显示主学科-语文、数学、英语-的平均分"><span class="toc-number">2.2.</span> <span class="toc-text">仅显示主学科(语文、数学、英语)的平均分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示五年级的所有学生的成绩"><span class="toc-number">2.3.</span> <span class="toc-text">显示五年级的所有学生的成绩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示五年级中所有英语不及格（低于60分）的学生"><span class="toc-number">2.4.</span> <span class="toc-text">显示五年级中所有英语不及格（低于60分）的学生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#新增总分列为主科（语文、数学、英语）的总分"><span class="toc-number">2.5.</span> <span class="toc-text">新增总分列为主科（语文、数学、英语）的总分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按总分从高到低排序，若总分相同依次按数学-英语-语文来排序"><span class="toc-number">2.6.</span> <span class="toc-text">按总分从高到低排序，若总分相同依次按数学/英语/语文来排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#按总分从高到低排名并添加排序，总分相同名次相同"><span class="toc-number">2.7.</span> <span class="toc-text">按总分从高到低排名并添加排序，总分相同名次相同</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取出五年级年级前十（仅按顺序取十位）"><span class="toc-number">2.8.</span> <span class="toc-text">取出五年级年级前十（仅按顺序取十位）</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -431,15 +438,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PyQt5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">KMP算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -451,11 +458,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -464,6 +467,38 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">最短编辑距离算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">梯度下降算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">apt-get换源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最小二乘法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
               </li>
             
             <div class="clearfix"></div>

@@ -160,6 +160,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-梯度下降算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/29/梯度下降算法/">梯度下降算法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/29/梯度下降算法/" class="archive-article-date">
+  	<time datetime="2019-10-29T03:16:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在学习机器学习的相关知识，碰到的第一个机器学习算法便是这个梯度下降算法，以下为个人对此算法的理解，以及算法的实现</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/算法/机器学习//" class="article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/29/梯度下降算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-pandas快速入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -180,55 +269,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Pandas-快速入门"><a href="#Pandas-快速入门" class="headerlink" title="Pandas 快速入门"></a>Pandas 快速入门</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这篇文章通过实例简单的来展示pandas能做些什么，也展示了一些pandas的简单调用方法。<br>快速系统的学习和了解pandas 推荐阅读 <a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html" target="_blank" rel="noopener">10 minutes to pandas</a>。<br>示例场景为小学考试成绩</p>
-<h3 id="生成数据"><a href="#生成数据" class="headerlink" title="生成数据"></a>生成数据</h3><p>这里随机生成1000+条数据，我们以学号作为DataFrame的Index</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_data</span><span class="params">()</span>:</span></span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(random.randint(<span class="number">1000</span>, <span class="number">1200</span>)):</span><br><span class="line">        grade_list =  [<span class="string">'一年级'</span>, <span class="string">'二年级'</span>, <span class="string">'三年级'</span>, <span class="string">'四年级'</span>, <span class="string">'五年级'</span>, <span class="string">'六年级'</span>]</span><br><span class="line">        grade = random.choice(grade_list)</span><br><span class="line">        data.append(&#123;</span><br><span class="line">            <span class="string">'学号'</span>: <span class="string">"&#123;:0&gt;4&#125;&#123;:0&gt;4&#125;"</span>.format(<span class="number">2019</span> - grade_list.index(grade), i),</span><br><span class="line">            <span class="string">'年级'</span>: grade,</span><br><span class="line">            <span class="string">'语文'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'数学'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'英语'</span>: <span class="literal">None</span> <span class="keyword">if</span> grade <span class="keyword">in</span> [<span class="string">'一年级'</span>, <span class="string">'二年级'</span>] <span class="keyword">else</span> random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'品德'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'体育'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'美术'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'音乐'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">    </span><br><span class="line">data = get_random_data()</span><br><span class="line">df = pandas.DataFrame(data, index=[stu[<span class="string">'学号'</span>] <span class="keyword">for</span> stu <span class="keyword">in</span> data])</span><br></pre></td></tr></table></figure>
-
-<h3 id="示例场景"><a href="#示例场景" class="headerlink" title="示例场景"></a>示例场景</h3><h4 id="计算各个年级各学科的平均分"><a href="#计算各个年级各学科的平均分" class="headerlink" title="计算各个年级各学科的平均分"></a>计算各个年级各学科的平均分</h4><blockquote>
-<p>df.groupby(‘年级’).mean()</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image1.png" alt="Image1.png"></p>
-<h4 id="仅显示主学科-语文、数学、英语-的平均分"><a href="#仅显示主学科-语文、数学、英语-的平均分" class="headerlink" title="仅显示主学科(语文、数学、英语)的平均分"></a>仅显示主学科(语文、数学、英语)的平均分</h4><blockquote>
-<p>df.groupby(‘年级’).mean()[[‘语文’, ‘数学’, ‘英语’]]</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image2.png" alt="Image2.png"></p>
-<h4 id="显示五年级的所有学生的成绩"><a href="#显示五年级的所有学生的成绩" class="headerlink" title="显示五年级的所有学生的成绩"></a>显示五年级的所有学生的成绩</h4><blockquote>
-<p>df[df[‘年级’] == ‘五年级’]</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image3.png" alt="Image3.png"><br>如果需要将各个年级分离，即产生6张表，每张表对应一个年级</p>
-<blockquote>
-<p>df5[‘年级’] = ‘五年级’</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image4.png" alt="Image4.png"></p>
-<h4 id="显示五年级中所有英语不及格（低于60分）的学生"><a href="#显示五年级中所有英语不及格（低于60分）的学生" class="headerlink" title="显示五年级中所有英语不及格（低于60分）的学生"></a>显示五年级中所有英语不及格（低于60分）的学生</h4><blockquote>
-<p>df5[df5[‘英语’] &lt; 60]</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image5.png" alt="Image5.png"></p>
-<h4 id="新增总分列为主科（语文、数学、英语）的总分"><a href="#新增总分列为主科（语文、数学、英语）的总分" class="headerlink" title="新增总分列为主科（语文、数学、英语）的总分"></a>新增总分列为主科（语文、数学、英语）的总分</h4><blockquote>
-<p>df[‘总分’] = df.apply(lambda row: row[[‘语文’, ‘数学’, ‘英语’]].sum(skipna=True), axis=1)</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image6.png" alt="Image6.png"><br>或</p>
-<blockquote>
-<p>df[‘总分’] = df[[‘语文’, ‘数学’, ‘英语’]].sum(skipna=True, axis=1, min_count=1)</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image7.png" alt="Image7.png"></p>
-<h4 id="按总分从高到低排序，若总分相同依次按数学-英语-语文来排序"><a href="#按总分从高到低排序，若总分相同依次按数学-英语-语文来排序" class="headerlink" title="按总分从高到低排序，若总分相同依次按数学/英语/语文来排序"></a>按总分从高到低排序，若总分相同依次按数学/英语/语文来排序</h4><blockquote>
-<p>df5.sort_values(by=[‘总分’, ‘数学’, ‘英语’, ‘语文’], ascending=False)</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image8.png" alt="Image8.png"></p>
-<h4 id="按总分从高到低排名并添加排序，总分相同名次相同"><a href="#按总分从高到低排名并添加排序，总分相同名次相同" class="headerlink" title="按总分从高到低排名并添加排序，总分相同名次相同"></a>按总分从高到低排名并添加排序，总分相同名次相同</h4><blockquote>
-<p>df5[‘名次’] = df5[‘总分’].rank(ascending=False, method=’dense’)<br>df5.sort_values(by=’名次’)</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image9.png" alt="Image9.png"></p>
-<h4 id="取出五年级年级前十（仅按顺序取十位）"><a href="#取出五年级年级前十（仅按顺序取十位）" class="headerlink" title="取出五年级年级前十（仅按顺序取十位）"></a>取出五年级年级前十（仅按顺序取十位）</h4><blockquote>
-<p>df5.head(10)</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image10.png" alt="Image10.png"><br>或</p>
-<blockquote>
-<p>df5[:10]</p>
-</blockquote>
-<p><img src="/2019/09/10/pandas快速入门/Image11.png" alt="Image11.png"></p>
-
+        <p>Pandas是Python用于数据分析的最流行的库，以下以<strong>小学考试成绩</strong>为示例，展示Pandas的使用</p>
+        
       
 
       
@@ -254,10 +296,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python/pandas//" class="article-tag-list-link color2">pandas</a>
         		</li>
       		
 		</ul>
@@ -316,22 +354,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="KMP算法（字符串匹配算法）"><a href="#KMP算法（字符串匹配算法）" class="headerlink" title="KMP算法（字符串匹配算法）"></a>KMP算法（字符串匹配算法）</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析</p>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。</p>
-<p>示例 1:</p>
-<blockquote>
-<p>输入: haystack = “hello”, needle = “ll”<br>输出: 2</p>
-</blockquote>
-<p>示例 2:</p>
-<blockquote>
-<p>输入: haystack = “aaaaa”, needle = “bba”<br>输出: -1<br>说明:</p>
-</blockquote>
-<p>当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。</p>
-<p>来源：<a href="https://leetcode-cn.com/problems/implement-strstr" target="_blank" rel="noopener">力扣（LeetCode）</a></p>
-<h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><h5 id="暴力匹配算法"><a href="#暴力匹配算法" class="headerlink" title="暴力匹配算法"></a>暴力匹配算法</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 暴力匹配算法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_find</span><span class="params">(S, P)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> P:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    i = <span class="number">0</span>  <span class="comment"># S 中匹配 P 的第一个字符的位置，也是最终的返回值</span></span><br><span class="line">    j = <span class="number">0</span>  <span class="comment"># S 中匹配 P 的位置，此时比较的是 S[i+j] ?= P[j]</span></span><br><span class="line">    <span class="keyword">while</span> i + len(P) &lt;= len(S):</span><br><span class="line">        <span class="keyword">if</span> S[i + j] == P[j]:</span><br><span class="line">            <span class="comment"># 相等情况下，j向前移动一位</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> j == len(P):</span><br><span class="line">                <span class="keyword">return</span> i</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 不相等的情况下重置j, 然后i向前移动一位</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h5><p>KMP算法是基于暴力匹配算法的优化<br>文本字符串串为 <strong>S</strong>, 模式串(需要匹配的字符串)为 <strong>P</strong><br>假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置<br>    如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++，继续匹配下一个字符；<br>    如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]。此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。换言之，当匹配失败时，模式串向右移动的位数为：失配字符所在位置 - 失配字符对应的next 值（next 数组的求解会在下文的3.3.3节中详细阐述），即移动的实际位数为：j - next[j]，且此值大于等于1。</p>
-
+        <p>最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析。</p>
+        
       
 
       
@@ -344,7 +368,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">KMP算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -415,70 +439,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Celery-RabbitMQ异步任务队列"><a href="#Celery-RabbitMQ异步任务队列" class="headerlink" title="Celery+RabbitMQ异步任务队列"></a>Celery+RabbitMQ异步任务队列</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，就需要使用消息队列处理了。</p>
-<p>以下为个人浅显的使用与理解，celery的详细教程参见 <a href="http://docs.jinkan.org/docs/celery/index.html#" target="_blank" rel="noopener">Celery - 分布式任务队列</a></p>
-<h3 id="Celery"><a href="#Celery" class="headerlink" title="Celery"></a>Celery</h3><h4 id="消息队列简述"><a href="#消息队列简述" class="headerlink" title="消息队列简述"></a>消息队列简述</h4><p>Celery是一个消息队列框架，其基本工作流程如下，此流程就是消息队列的实现的流程<br><img src="/2019/09/06/RabbitMQ+Celery异步任务队列/Image1.png" alt="Image1.png"><br>可以看到一个消息队列，需要有三部分组成： <strong>生产者</strong>，<strong>中间人</strong>，<strong>消费者</strong><br><strong>生产者</strong>：图中的<em>user application</em>，产生任务数据<br><strong>中间人</strong>：图中的<em>Broker</em>，保存生产者产生的任务数据直到被消费者取出<br><strong>消费者</strong>：图中的<em>celer worker X</em>，从中间人处取任务数据并执行</p>
-<p>除此之外，Celery还有一个<strong>结果后端</strong>，我们知道，消息队列中消费者执行完任务后的返回值如果没有特殊处理是无处安放的，因此Celery提供了一个<strong>结果后端</strong>用于存储任务的执行返回值</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>celery是python的一个第三方库，所有直接可以使用pip安装</p>
-<blockquote>
-<p>pip install celery</p>
-</blockquote>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>下面是个简单的的celery示例代码</p>
-<h6 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h6><p>需要指定中间人和定义消费者的具体行为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"></span><br><span class="line">app = Celery(main=<span class="string">'tasks'</span>, broken=<span class="string">'amqp://guest@localhost//'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.task()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">celery_task1</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> do something</span></span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h6><p>实际中需要放到消息队列的低分，需要指定消费者</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># do something</span></span><br><span class="line">celery_task1.delay(*args, **kwargs)</span><br><span class="line"><span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="中间人"><a href="#中间人" class="headerlink" title="中间人"></a>中间人</h6><p>作为一个服务，接受生产者的数据，并提供给消费者</p>
-<blockquote>
-<p>celery -A <strong><em>tasks</em></strong> worker -l info</p>
-</blockquote>
-<p>这里网上的教程中很多都说 <strong>-A</strong> 参数后面让我们用模块名，其实是不对的。<br><strong>-A</strong> 参数后面是我们Celery实例所在的位置，且跟实例中 <strong>main</strong> 参数也没有任何关系。</p>
-<p>例如，如果我们celery的实例的位置是在 tasks.task1.task1_1 中那么我们的命令将是</p>
-<blockquote>
-<p> celery -A tasks.task1.task1_1 worker -l info</p>
-</blockquote>
-<p>当然如果我们在 tasks 中 import tasks.task1.task1_1 后使用上面的也是可以的（等于说有了两种启动中间人的方法）</p>
-<p>一般来说一个app实例起一个中间人，当然你也可以将所有app实例聚集在一起（import 或者 代码放在一起的方式），然后启动一个中间人来处理所有任务</p>
-<h4 id="环境问题"><a href="#环境问题" class="headerlink" title="环境问题"></a>环境问题</h4><p>windows环境若无法正常使用，请切换celery版本至3.4.0，或使用子系统</p>
-<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><h4 id="选用-RabbitMQ-而不是-Redis-的原因"><a href="#选用-RabbitMQ-而不是-Redis-的原因" class="headerlink" title="选用 RabbitMQ 而不是 Redis 的原因"></a>选用 RabbitMQ 而不是 Redis 的原因</h4><p>使用 <em>celery + redis</em> 作为消息队列有一个坑，redis 作为 celery 的 broker 时，如果一个任务太耗时，任务完成时间超过了 <em>Redis as Broker</em> 的时间（Redis默认为一小时）则任务会被再次分配到worker。从而会被重复执行。所以这边使用 RabbitMQ 作为消息队列了。</p>
-<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><h5 id="windows环境"><a href="#windows环境" class="headerlink" title="windows环境"></a>windows环境</h5><h6 id="安装erlang"><a href="#安装erlang" class="headerlink" title="安装erlang"></a>安装erlang</h6><p>RabbitMQ服务端代码是使用并发式语言Erlang编写的，安装Rabbit MQ的前提是安装Erlang<br>链接：<a href="http://www.erlang.org/downloads" target="_blank" rel="noopener">http://www.erlang.org/downloads</a></p>
-<h6 id="安装RabbitMQ"><a href="#安装RabbitMQ" class="headerlink" title="安装RabbitMQ"></a>安装RabbitMQ</h6><p>下载地址：<a href="http://www.rabbitmq.com/download.html" target="_blank" rel="noopener">http://www.rabbitmq.com/download.html</a></p>
-<h6 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h6><p>erlang 是 安装目录/bin/<br>rabbitmq 是 安装目录/sbin/</p>
-<h6 id="启动RabbitMQ服务"><a href="#启动RabbitMQ服务" class="headerlink" title="启动RabbitMQ服务"></a>启动RabbitMQ服务</h6><p>默认情况下会自动启动的，如果没有自动启动可以通过下面这个命令启动</p>
-<blockquote>
-<p>rabbitmq-service.bat start</p>
-</blockquote>
-<p>停止服务</p>
-<blockquote>
-<p>rabbitmq-service.bat stop</p>
-</blockquote>
-<h6 id="RabbitMQ管理后台"><a href="#RabbitMQ管理后台" class="headerlink" title="RabbitMQ管理后台"></a>RabbitMQ管理后台</h6><p>使用 RabbitMQ 管理后台需要先启用</p>
-<blockquote>
-<p>rabbitmq-plugins.bat enable rabbitmq_management</p>
-</blockquote>
-<p>然后访问 <a href="http://localhost:15672/" target="_blank" rel="noopener">http://localhost:15672/</a> 即可进入管理后台</p>
-<h5 id="Linux环境"><a href="#Linux环境" class="headerlink" title="Linux环境"></a>Linux环境</h5><h6 id="安装erlang-1"><a href="#安装erlang-1" class="headerlink" title="安装erlang"></a>安装erlang</h6><blockquote>
-<p>sudo apt-get install erlang-nox</p>
-</blockquote>
-<h6 id="安装RabbitMQ-1"><a href="#安装RabbitMQ-1" class="headerlink" title="安装RabbitMQ"></a>安装RabbitMQ</h6><blockquote>
-<p>sudo apt-get install rabbitmq-server</p>
-</blockquote>
-<h6 id="启动RabbitMQ服务-1"><a href="#启动RabbitMQ服务-1" class="headerlink" title="启动RabbitMQ服务"></a>启动RabbitMQ服务</h6><blockquote>
-<p>sudo rabbitmq-server start</p>
-</blockquote>
-<p> 停止服务</p>
-<blockquote>
-<p>sudo rabbitmq-server stop</p>
-</blockquote>
-<h6 id="RabbitMQ管理后台-1"><a href="#RabbitMQ管理后台-1" class="headerlink" title="RabbitMQ管理后台"></a>RabbitMQ管理后台</h6><blockquote>
-<p>sudo rabbitmq-plugins enable rabbitmq_management</p>
-</blockquote>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ol>
-<li><a href="https://www.cnblogs.com/valor-xh/p/6348009.html" target="_blank" rel="noopener">各类消息队列 rabbitMQ/activeMQ/zeroMQ/Kafka/Redis 的比较</a></li>
-</ol>
-
+        <p>后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，这时就需要使用消息队列进行处理了。</p>
+        
       
 
       
@@ -508,10 +470,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python/celery//" class="article-tag-list-link color2">celery</a>
         		</li>
       		
 		</ul>
@@ -570,29 +528,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="最短编辑距离算法"><a href="#最短编辑距离算法" class="headerlink" title="最短编辑距离算法"></a>最短编辑距离算法</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在最近碰到项目时需要对文本内容进行分类。一开始是使用机器学习的nltk库来分类，然后发现并不符合预期，因为文本内容是套用模板生成的，不同之处只有部分变量内容。而nltk库是通过文本整体概率来分类的，因此不符合预期情况。<br>以下为最短编辑距离算法的<strong>题目</strong>与<strong>解法</strong>与<strong>python代码</strong></p>
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定两个单词 word1 和 word2，计算出将 word1 转换成 word2 所使用的最少操作数 。<br>你可以对一个单词进行如下三种操作：</p>
-<ol>
-<li>插入一个字符</li>
-<li>删除一个字符</li>
-<li>替换一个字符</li>
-</ol>
-<p>示例 1:</p>
-<blockquote>
-<p>输入: word1 = “horse”, word2 = “ros”<br>输出: 3<br>解释:<br>horse -&gt; rorse (将 ‘h’ 替换为 ‘r’)<br>rorse -&gt; rose (删除 ‘r’)<br>rose -&gt; ros (删除 ‘e’)</p>
-</blockquote>
-<p>示例 2:</p>
-<blockquote>
-<p>输入: word1 = “intention”, word2 = “execution”<br>输出: 5<br>解释:<br>intention -&gt; inention (删除 ‘t’)<br>inention -&gt; enention (将 ‘i’ 替换为 ‘e’)<br>enention -&gt; exention (将 ‘n’ 替换为 ‘x’)<br>exention -&gt; exection (将 ‘n’ 替换为 ‘c’)<br>exection -&gt; execution (插入 ‘u’)</p>
-</blockquote>
-<p>来源：<a href="https://leetcode-cn.com/problems/edit-distance" target="_blank" rel="noopener">力扣（LeetCode）</a></p>
-<h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><p><strong>初始化table1</strong>：初始填充<br><img src="/2019/08/29/最短编辑距离算法/%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt="初始化.png"><br><strong>初始化table2</strong>：对比字符串生成<br><img src="/2019/08/29/最短编辑距离算法/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AF%B9%E6%AF%94.png" alt="字符串对比.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(x, y) 处的值为 min &#123;</span><br><span class="line">    table1[x-1,y], </span><br><span class="line">    table1[x, y-1],</span><br><span class="line">    table1[x-1, y-1] + table2[x, y]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>需要逐步计算，table[len(str1), len(str2)] 即为最短编辑次数</strong></p>
-<h3 id="代码Python"><a href="#代码Python" class="headerlink" title="代码Python"></a>代码Python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_similarity</span><span class="params">(txt1, txt2)</span>:</span>       </span><br><span class="line">    <span class="string">"""    </span></span><br><span class="line"><span class="string">    获取txt1和txt2的相似度 </span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    :param txt1:  </span></span><br><span class="line"><span class="string">    :param txt2:  </span></span><br><span class="line"><span class="string">    :return:    </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    length1, length2 = len(txt1), len(txt2)   </span><br><span class="line">    matrix = numpy.zeros((length2 + <span class="number">1</span>, length1 + <span class="number">1</span>))  <span class="comment"># 创建矩阵 </span></span><br><span class="line">    <span class="comment"># 初始化矩阵    </span></span><br><span class="line">    <span class="keyword">for</span> col_idx <span class="keyword">in</span> range(length1):    </span><br><span class="line">        matrix[<span class="number">0</span>][col_idx] = col_idx    </span><br><span class="line">        <span class="keyword">for</span> row_idx <span class="keyword">in</span> range(length2):      </span><br><span class="line">            matrix[row_idx][<span class="number">0</span>] = row_idx    </span><br><span class="line">    <span class="comment"># 开始进行动态规划    </span></span><br><span class="line">    <span class="keyword">for</span> row_idx <span class="keyword">in</span> range(<span class="number">1</span>, length2 + <span class="number">1</span>):    </span><br><span class="line">        <span class="keyword">for</span> col_idx <span class="keyword">in</span> range(<span class="number">1</span>, length1 + <span class="number">1</span>):     </span><br><span class="line">            cost = <span class="number">0</span> <span class="keyword">if</span> txt1[col_idx - <span class="number">1</span>] == txt2[row_idx - <span class="number">1</span>] <span class="keyword">else</span> <span class="number">1</span>  <span class="comment"># 代价值     </span></span><br><span class="line">            <span class="comment"># 三种字符串操作方式增加 删除 替换      </span></span><br><span class="line">            edit_exchange_dis = matrix[row_idx - <span class="number">1</span>][col_idx - <span class="number">1</span>] + cost  <span class="comment"># 替换        </span></span><br><span class="line">            edit_add_dis = matrix[row_idx - <span class="number">1</span>][col_idx] + <span class="number">1</span>  <span class="comment"># 添加    </span></span><br><span class="line">            edit_del_dis = matrix[row_idx][col_idx - <span class="number">1</span>] + <span class="number">1</span>  <span class="comment"># 删除      </span></span><br><span class="line">            matrix[row_idx][col_idx] = min(edit_exchange_dis, edit_add_dis, edit_del_dis)  <span class="comment"># 选取最小的代价  </span></span><br><span class="line">    <span class="comment"># return matrix[length2][length1]  # 返回最短编辑距离</span></span><br><span class="line">    similarity = <span class="number">1</span> - matrix[length2][length1] / max(length1, length2) </span><br><span class="line">    print(<span class="string">"相似度"</span>, similarity)   </span><br><span class="line">    <span class="keyword">return</span> similarity</span><br></pre></td></tr></table></figure>
-
-
+        <p>在最近碰到项目时需要对文本内容进行分类。一开始是使用机器学习的nltk库来分类，然后发现并不符合预期，因为文本内容是套用模板生成的，不同之处只有部分变量内容。而nltk库是通过文本整体概率来分类的，因此不符合预期情况。<br>以下为最短编辑距离算法的<strong>题目</strong>与<strong>解法</strong>与<strong>python代码</strong></p>
+        
       
 
       
@@ -605,7 +542,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">最短编辑距离算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -656,96 +593,6 @@
 
 
   
-    <article id="post-梯度下降算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/梯度下降算法/">最短编辑距离算法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/29/梯度下降算法/" class="archive-article-date">
-  	<time datetime="2019-08-29T03:16:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h1><p>最近在学习机器学习的相关知识，碰到的第一个机器学习算法便是这个梯度下降算法，以下为个人对此算法的理解，以及算法的实现</p>
-<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>设多元回归方程为<br><img src="/2019/08/29/梯度下降算法/Image1.png" alt="Image1.png"><br>需要注意的是 h(x) 中的 x 表示的是 x0 ~ xn，是多个参数。其中x0 = 1<br>该方程等价于矩阵乘法<br><img src="/2019/08/29/梯度下降算法/Image2.png" alt="Image2.png"><br>其中<br><img src="/2019/08/29/梯度下降算法/Image3.png" alt="Image3.png"><br><img src="/2019/08/29/梯度下降算法/Image4.png" alt="Image4.png"><br><img src="/2019/08/29/梯度下降算法/Image5.png" alt="Image5.png"><br>该多元回归的代价函数（均方差代价函数）为：<br><img src="/2019/08/29/梯度下降算法/Image6.png" alt="Image6.png"><br>其中m为样本个数，n为维度，i表示第几个样本<br>其梯度矩阵为<br><img src="/2019/08/29/梯度下降算法/Image7.png" alt="Image7.png"><br>根据梯度下降的算法，表达式为<br><img src="/2019/08/29/梯度下降算法/Image8.png" alt="Image8.png"><br>直到 $\Theta$ 足够小（收敛）<br>将梯度项函数表达式为<br><img src="/2019/08/29/梯度下降算法/Image9.png" alt="Image9.png"><br>则可以将梯度矩阵转化为为<br><img src="/2019/08/29/梯度下降算法/Image10.png" alt="Image10.png"></p>
-<h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 样本</span></span><br><span class="line">SAMPLE = [</span><br><span class="line">    (<span class="number">1</span>, <span class="number">3</span>),</span><br><span class="line">    (<span class="number">2</span>, <span class="number">4</span>),</span><br><span class="line">    (<span class="number">3</span>, <span class="number">5</span>),</span><br><span class="line">    (<span class="number">4</span>, <span class="number">5</span>),</span><br><span class="line">    (<span class="number">5</span>, <span class="number">2</span>),</span><br><span class="line">    (<span class="number">6</span>, <span class="number">4</span>),</span><br><span class="line">    (<span class="number">7</span>, <span class="number">7</span>),</span><br><span class="line">    (<span class="number">8</span>, <span class="number">8</span>),</span><br><span class="line">    (<span class="number">9</span>, <span class="number">11</span>),</span><br><span class="line">    (<span class="number">10</span>, <span class="number">8</span>),</span><br><span class="line">    (<span class="number">11</span>, <span class="number">12</span>),</span><br><span class="line">    (<span class="number">12</span>, <span class="number">11</span>),</span><br><span class="line">    (<span class="number">13</span>, <span class="number">13</span>),</span><br><span class="line">    (<span class="number">14</span>, <span class="number">13</span>),</span><br><span class="line">    (<span class="number">15</span>, <span class="number">16</span>),</span><br><span class="line">    (<span class="number">16</span>, <span class="number">17</span>),</span><br><span class="line">    (<span class="number">17</span>, <span class="number">18</span>),</span><br><span class="line">    (<span class="number">18</span>, <span class="number">17</span>),</span><br><span class="line">    (<span class="number">19</span>, <span class="number">19</span>),</span><br><span class="line">    (<span class="number">20</span>, <span class="number">21</span>)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">m = len(SAMPLE)  <span class="comment"># 样本个数</span></span><br><span class="line">n = <span class="number">2</span>  <span class="comment"># x 元素个数</span></span><br><span class="line">limit = <span class="number">1e-5</span>  <span class="comment"># 收敛值</span></span><br><span class="line"></span><br><span class="line">X0 = numpy.ones((m, <span class="number">1</span>))  <span class="comment"># x0的矩阵</span></span><br><span class="line">X1 = numpy.array([itm[<span class="number">0</span>] <span class="keyword">for</span> itm <span class="keyword">in</span> SAMPLE]).reshape(m, <span class="number">1</span>)  <span class="comment"># x1的矩阵</span></span><br><span class="line"><span class="comment"># Xn = numpy.array([itm[n] for itm in SAMPLE]).reshape(m, 1)  # Xn的矩阵</span></span><br><span class="line">X = numpy.hstack((X0, X1))</span><br><span class="line"><span class="comment"># X = numpy.hstack((X0, X1, ..., Xn))</span></span><br><span class="line"></span><br><span class="line">Y = numpy.array([itm[<span class="number">-1</span>] <span class="keyword">for</span> itm <span class="keyword">in</span> SAMPLE]).reshape(m, <span class="number">1</span>)  <span class="comment"># y的矩阵</span></span><br><span class="line"></span><br><span class="line">alpha = <span class="number">0.01</span>  <span class="comment"># 学习率</span></span><br><span class="line"></span><br><span class="line">THETA = numpy.array([<span class="number">2</span>, <span class="number">2</span>]).reshape(<span class="number">2</span>, <span class="number">1</span>)  <span class="comment"># 起始选择的 theta0, theta1的值</span></span><br><span class="line"><span class="comment"># THETA = numpy.array([2, 2, ..., 2]).reshape(n, 1)  # 起始选择的 theta0, theta1, thetan的值</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">error_function</span><span class="params">(theta, X, Y)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    代价函数</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param theta:</span></span><br><span class="line"><span class="string">    :param X:</span></span><br><span class="line"><span class="string">    :param Y:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    diff = numpy.dot(X, theta) - Y  <span class="comment">#</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / (<span class="number">2</span> * m) * numpy.dot(diff.T, diff)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradient_function</span><span class="params">(theta, X, Y)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    梯度下降</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param theta:</span></span><br><span class="line"><span class="string">    :param X:</span></span><br><span class="line"><span class="string">    :param Y:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    diff = numpy.dot(X, theta) - Y</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / m * numpy.dot(X.T, diff)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradient_descent</span><span class="params">()</span>:</span></span><br><span class="line">    theta = THETA</span><br><span class="line">    gradient = gradient_function(theta, X, Y)</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> numpy.all(numpy.absolute(gradient) &lt;= limit):</span><br><span class="line">        theta = theta - alpha * gradient</span><br><span class="line">        gradient = gradient_function(theta, X, Y)</span><br><span class="line">    <span class="keyword">return</span> theta</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    theta = gradient_descent()</span><br><span class="line">    J_theta = error_function(theta, X, Y)</span><br><span class="line">    print(theta)</span><br><span class="line">    print(J_theta)</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">最短编辑距离算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法/机器学习//" class="article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/29/梯度下降算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-nginx配置文件结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -766,11 +613,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h1><h3 id="结构如下图所示"><a href="#结构如下图所示" class="headerlink" title="结构如下图所示"></a>结构如下图所示</h3><p><img src="/2019/06/28/nginx配置文件结构/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84.png" alt="nginx配置文件结构"></p>
-<h3 id="Nginx默认提供的配置"><a href="#Nginx默认提供的配置" class="headerlink" title="Nginx默认提供的配置"></a>Nginx默认提供的配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">user www-data;</span><br><span class="line">worker_processes auto;</span><br><span class="line">pid /run/nginx.pid;</span><br><span class="line">include /etc/nginx/modules-enabled/*.conf;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">        worker_connections 768;</span><br><span class="line">        <span class="comment"># multi_accept on;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># Basic Settings</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        sendfile on;</span><br><span class="line">        tcp_nopush on;</span><br><span class="line">        tcp_nodelay on;</span><br><span class="line">        keepalive_timeout 65;</span><br><span class="line">        types_hash_max_size 2048;</span><br><span class="line">        <span class="comment"># server_tokens off;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># server_names_hash_bucket_size 64;</span></span><br><span class="line">        <span class="comment"># server_name_in_redirect off;</span></span><br><span class="line"></span><br><span class="line">        include /etc/nginx/mime.types;</span><br><span class="line">        default_type application/octet-stream;</span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># SSL Settings</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        ssl_protocols TLSv1 TLSv1.1 TLSv1.2; <span class="comment"># Dropping SSLv3, ref: POODLE</span></span><br><span class="line">        ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># Logging Settings</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        access_log /var/<span class="built_in">log</span>/nginx/access.log;</span><br><span class="line">        error_log /var/<span class="built_in">log</span>/nginx/error.log;</span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># Gzip Settings</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        gzip on;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># gzip_vary on;</span></span><br><span class="line">        <span class="comment"># gzip_proxied any;</span></span><br><span class="line">        <span class="comment"># gzip_comp_level 6;</span></span><br><span class="line">        <span class="comment"># gzip_buffers 16 8k;</span></span><br><span class="line">        <span class="comment"># gzip_http_version 1.1;</span></span><br><span class="line">        <span class="comment"># gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line">        <span class="comment"># Virtual Host Configs</span></span><br><span class="line">        <span class="comment">##</span></span><br><span class="line"></span><br><span class="line">        include /etc/nginx/conf.d/*.conf;</span><br><span class="line">        include /etc/nginx/sites-enabled/*;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#mail &#123;</span></span><br><span class="line"><span class="comment">#       # See sample authentication script at:</span></span><br><span class="line"><span class="comment">#       # http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#       # auth_http localhost/auth.php;</span></span><br><span class="line"><span class="comment">#       # pop3_capabilities "TOP" "USER";</span></span><br><span class="line"><span class="comment">#       # imap_capabilities "IMAP4rev1" "UIDPLUS";</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#       server &#123;</span></span><br><span class="line"><span class="comment">#               listen     localhost:110;</span></span><br><span class="line"><span class="comment">#               protocol   pop3;</span></span><br><span class="line"><span class="comment">#               proxy      on;</span></span><br><span class="line"><span class="comment">#       &#125;</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#       server &#123;</span></span><br><span class="line"><span class="comment">#               listen     localhost:143;</span></span><br><span class="line"><span class="comment">#               protocol   imap;</span></span><br><span class="line"><span class="comment">#               proxy      on;</span></span><br><span class="line"><span class="comment">#       &#125;</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>参考<br><a href="https://baijiahao.baidu.com/s?id=1604485941272024493&wfr=spider&for=pc" target="_blank" rel="noopener">详解Nginx服务器配置</a></p>
-
+        <p>Nginx是一个高性能的HTTP和反向代理服务器，也是最常用的web服务器之一。<br>下面将详解nginx的配置：</p>
+        
       
 
       
@@ -795,11 +639,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工具-软件-服务//" class="article-tag-list-link color4">工具/软件/服务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工具-软件-服务/nginx//" class="article-tag-list-link color1">nginx</a>
+        			<a href="/categories/服务//" class="article-tag-list-link color3">服务</a>
         		</li>
       		
 		</ul>
@@ -858,21 +698,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="换apt源"><a href="#换apt源" class="headerlink" title="换apt源"></a>换apt源</h1><h4 id="step1-备份原始源数据"><a href="#step1-备份原始源数据" class="headerlink" title="step1 备份原始源数据"></a>step1 备份原始源数据</h4><blockquote>
-<p>cp /etc/apt/sources.list /etc/apt/sources.list.backup</p>
-</blockquote>
-<h4 id="step2-编辑apt源"><a href="#step2-编辑apt源" class="headerlink" title="step2 编辑apt源"></a>step2 编辑apt源</h4><blockquote>
-<p>vi /etc/apt/sources.list</p>
-</blockquote>
-<p>写入以下内容(阿里源)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br></pre></td></tr></table></figure>
-
-<h4 id="step3-更新源信息（刷新）"><a href="#step3-更新源信息（刷新）" class="headerlink" title="step3 更新源信息（刷新）"></a>step3 更新源信息（刷新）</h4><blockquote>
-<p>sudo apt-get update<br>sudo apt-get upgrade</p>
-</blockquote>
-<h2 id="其他源"><a href="#其他源" class="headerlink" title="其他源"></a>其他源</h2><h5 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br></pre></td></tr></table></figure>
-
-<h5 id="网易源"><a href="#网易源" class="headerlink" title="网易源"></a>网易源</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+        <p>Ubuntu自带的源都是国外的网址，因此国内使用apt-get安装软件时会很慢，需要更换国内的镜像源解放速度。<br>以下为具体步骤：</p>
+        
       
 
       
@@ -898,10 +725,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="/categories/linux//" class="article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/linux/ubuntu//" class="article-tag-list-link color2">ubuntu</a>
         		</li>
       		
 		</ul>
@@ -960,58 +783,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Git快速入门"><a href="#Git快速入门" class="headerlink" title="Git快速入门"></a>Git快速入门</h1><h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><ol>
-<li>git： Git是一款提供版本控制系统的软件</li>
-<li>github： github是全球最大的<del>同性交友社区</del>软件项目的托管平台，所以我们可以通过git（github也只支持git）将我们的项目托管到github上面<h2 id="git基本操作指令："><a href="#git基本操作指令：" class="headerlink" title="git基本操作指令："></a>git基本操作指令：</h2><h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5>未经过初始化的文件夹无法通过git进行版本控制，不同于svn需要另外创建一个repository，初始化后本文件夹既是repository又是master<blockquote>
-<p>git init</p>
-</blockquote>
-<h5 id="add代码（提交代码的第一步）"><a href="#add代码（提交代码的第一步）" class="headerlink" title="add代码（提交代码的第一步）"></a>add代码（提交代码的第一步）</h5><blockquote>
-<p>git add .</p>
-</blockquote>
-<h5 id="commit代码（提交代码的第二步）"><a href="#commit代码（提交代码的第二步）" class="headerlink" title="commit代码（提交代码的第二步）"></a>commit代码（提交代码的第二步）</h5><blockquote>
-<p>git commit -m “描述”</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="git基本查看指令："><a href="#git基本查看指令：" class="headerlink" title="git基本查看指令："></a>git基本查看指令：</h2><h5 id="查看repository和本地add情况"><a href="#查看repository和本地add情况" class="headerlink" title="查看repository和本地add情况"></a>查看repository和本地add情况</h5><blockquote>
-<p>git status</p>
-</blockquote>
-<h5 id="本地对比repository修改情况（不包含新增项，即便add后也不行）"><a href="#本地对比repository修改情况（不包含新增项，即便add后也不行）" class="headerlink" title="本地对比repository修改情况（不包含新增项，即便add后也不行）"></a>本地对比repository修改情况（不包含新增项，即便add后也不行）</h5><blockquote>
-<p>git diff .</p>
-</blockquote>
-<h5 id="查看历史提交记录"><a href="#查看历史提交记录" class="headerlink" title="查看历史提交记录"></a>查看历史提交记录</h5><blockquote>
-<p>git log</p>
-</blockquote>
-<h2 id="git与github交互："><a href="#git与github交互：" class="headerlink" title="git与github交互："></a>git与github交互：</h2><p>前提：github存在一个repository</p>
-<h3 id="场景1：-本地已有一个项目，将该项目托管到github上"><a href="#场景1：-本地已有一个项目，将该项目托管到github上" class="headerlink" title="场景1： 本地已有一个项目，将该项目托管到github上"></a>场景1： 本地已有一个项目，将该项目托管到github上</h3><h5 id="step1-github新增一个repository，用于该项目托管的地方"><a href="#step1-github新增一个repository，用于该项目托管的地方" class="headerlink" title="step1: github新增一个repository，用于该项目托管的地方"></a>step1: github新增一个repository，用于该项目托管的地方</h5><h5 id="step2-初始化"><a href="#step2-初始化" class="headerlink" title="step2:  初始化"></a>step2:  初始化</h5><blockquote>
-<p>git init</p>
-</blockquote>
-<h5 id="step3-关联github的repository"><a href="#step3-关联github的repository" class="headerlink" title="step3: 关联github的repository"></a>step3: 关联github的repository</h5><blockquote>
-<p>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:wusevsliuli/EasyJoin.git</p>
-</blockquote>
-<h5 id="step4-add文件"><a href="#step4-add文件" class="headerlink" title="step4:  add文件"></a>step4:  add文件</h5><blockquote>
-<p>git add –all</p>
-</blockquote>
-<h5 id="step5-commit文件"><a href="#step5-commit文件" class="headerlink" title="step5:  commit文件"></a>step5:  commit文件</h5><blockquote>
-<p>git commit -m “描述”</p>
-</blockquote>
-<h5 id="step6-push代码到远端origin（仅第一次push需要加-u选项）"><a href="#step6-push代码到远端origin（仅第一次push需要加-u选项）" class="headerlink" title="step6:  push代码到远端origin（仅第一次push需要加-u选项）"></a>step6:  push代码到远端origin（仅第一次push需要加-u选项）</h5><blockquote>
-<p>git push -u origin</p>
-</blockquote>
-<h5 id="step7-push远端origin代码到master"><a href="#step7-push远端origin代码到master" class="headerlink" title="step7:  push远端origin代码到master"></a>step7:  push远端origin代码到master</h5><blockquote>
-<p>git push origin master</p>
-</blockquote>
-<h2 id="错误情况处理："><a href="#错误情况处理：" class="headerlink" title="错误情况处理："></a>错误情况处理：</h2><h3 id="push错误"><a href="#push错误" class="headerlink" title="push错误"></a>push错误</h3><h5 id="1-src-refspec-master-does-not-match-any"><a href="#1-src-refspec-master-does-not-match-any" class="headerlink" title="1. src refspec master does not match any."></a>1. src refspec master does not match any.</h5><p><img src="/2018/05/25/git快速入门/%E6%B2%A1%E6%9C%89%E5%B7%B2add%E7%9A%84%E6%96%87%E4%BB%B6.png" alt="没有已add的文件"><br><strong>错误原因</strong>： 目录中没有文件，空目录是不能提交<br><strong>处理方法</strong>：</p>
-<blockquote>
-<p>git add .<br>git commit -m “description”</p>
-</blockquote>
-<h5 id="2-The-current-branch-master-has-no-upstream-branch"><a href="#2-The-current-branch-master-has-no-upstream-branch" class="headerlink" title="2. The current branch master has no upstream branch."></a>2. The current branch master has no upstream branch.</h5><p><img src="/2018/05/25/git快速入门/%E6%B2%A1%E6%9C%89%E5%AF%B9%E5%BA%94%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF.png" alt="没有对应的远程分支"><br><strong>错误原因</strong>：当前分支主机没有上游分支<br><strong>处理方法</strong>：</p>
-<blockquote>
-<p>git push –set-upstream origin master</p>
-</blockquote>
-<h5 id="3-Permission-denied-publickey-Could-not-read-from-remote-repository"><a href="#3-Permission-denied-publickey-Could-not-read-from-remote-repository" class="headerlink" title="3. Permission denied (publickey). Could not read from remote    repository."></a>3. Permission denied (publickey). Could not read from remote    repository.</h5><p><img src="/2018/05/25/git快速入门/%E6%97%A0%E8%BF%9C%E7%A8%8B%E6%8E%A8%E9%80%81%E6%9D%83%E9%99%90.png" alt="无远程推送权限"><br><strong>错误原因</strong>：没有远程推送权限<br><strong>处理方法</strong>：<br>参见 <a href="https://blog.csdn.net/weixin_44394753/article/details/91410463" target="_blank" rel="noopener">github上传项目的时候报出git@github.com: Permission denied (publickey). fatal: Could not read from remote repo</a></p>
-<h2 id="告警原因与处理"><a href="#告警原因与处理" class="headerlink" title="告警原因与处理:"></a>告警原因与处理:</h2><h3 id="push告警"><a href="#push告警" class="headerlink" title="push告警"></a>push告警</h3><h5 id="1-LF-will-be-replaced-by-CRLF-in-xxx-The-file-will-have-its-original-line-endings-in-your-working-directory"><a href="#1-LF-will-be-replaced-by-CRLF-in-xxx-The-file-will-have-its-original-line-endings-in-your-working-directory" class="headerlink" title="1. LF will be replaced by CRLF in xxx. The file will have its original line endings in your working directory."></a>1. LF will be replaced by CRLF in xxx. The file will have its original line endings in your working directory.</h5><p><img src="/2018/05/25/git快速入门/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%91%8A%E8%AD%A6.png" alt="跨平台告警"><br><strong>告警原因</strong>：跨平台的开发情况</p>
-
+        <p>Git是非常主流的提供版本控制系统的软件，相比svn来说，更小更方便使用。</p>
+        
       
 
       
@@ -1024,7 +797,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GIT</a>
         		</li>
       		
 		</ul>
@@ -1036,11 +809,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工具-软件-服务//" class="article-tag-list-link color4">工具/软件/服务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工具-软件-服务/git//" class="article-tag-list-link color4">git</a>
+        			<a href="/categories/未分类//" class="article-tag-list-link color4">未分类</a>
         		</li>
       		
 		</ul>
@@ -1099,40 +868,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="PyQt5安装与配置"><a href="#PyQt5安装与配置" class="headerlink" title="PyQt5安装与配置"></a>PyQt5安装与配置</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
-<p>pip install PyQt5<br>pip install pyqt5-tools</p>
-</blockquote>
-<h2 id="配置pycharm"><a href="#配置pycharm" class="headerlink" title="配置pycharm"></a>配置pycharm</h2><p>Setting -&gt; Tools -&gt; Extrater Tools -&gt; +</p>
-<ol>
-<li>PYUIC</li>
-</ol>
-<p><strong>Program</strong>: <em>\python.exe<br>*</em>Parameters**: -m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py </p>
-<ol start="2">
-<li>qtdesigner</li>
-</ol>
-<p><strong>Program</strong>: *\Lib\site-packages\pyqt5-tools\designer.exe</p>
-<h2 id="使用qtdesigner"><a href="#使用qtdesigner" class="headerlink" title="使用qtdesigner"></a>使用qtdesigner</h2><ul>
-<li>pycharm打开qtdesigner<br><img src="/2017/12/18/PyQt5的安装与Pycharm配置/pycharm%E8%AE%BE%E7%BD%AEqtdesigner.jpg" alt="pycharm设置qtdesigner"><br>通过该流程可以快速打开qtdesigner</li>
-<li>手动打开qtdesigner </li>
-<li>\Lib\site-packages\pyqt5-tools\designer.exe</li>
-<li>使用qtdesigner<br><img src="/2017/12/18/PyQt5的安装与Pycharm配置/qtdesigner%E7%95%8C%E9%9D%A2.jpg" alt="qtdesigner界面"><br>基本用法，所见即所得：</li>
-</ul>
-<p>1.从控件栏拖动控件至窗口栏<br>2.在参数栏设置控件显示效果<br>3.绘制完成后将保存为.ui文件</p>
-<ul>
-<li><p>使用pycharm根据.ui文件生成pyqt5的.py文件<br><img src="/2017/12/18/PyQt5的安装与Pycharm配置/%E6%A0%B9%E6%8D%AEPYUIC%E7%94%9F%E6%88%90py%E6%96%87%E4%BB%B6.jpg" alt="根据PYUIC生成py文件"><br>选中.ui文件后，点击PYUIC即可生成对应的.py文件</p>
-</li>
-<li><p>手动生成.py文件<br>命令行输入</p>
-<blockquote>
-<p>python -m PyQt5.uic.pyuic filename.ui -o filename.py  </p>
-</blockquote>
-</li>
-<li><p>生成图形界面<br>新建main.py文件，添加下列代码后执行即可</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding= utf8</span></span><br><span class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtWidgets, QtGui, QtCore</span><br><span class="line"><span class="keyword">from</span> ui_mainfrm <span class="keyword">import</span> Ui_MainWindow</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    app = QtWidgets.QApplication(sys.argv)</span><br><span class="line">    window = QtWidgets.QMainWindow() <span class="comment"># ui使用的templates\forms是MainWindow</span></span><br><span class="line">    <span class="comment"># window = QtWidgets.QWidget() # ui使用的templates\forms是Widget</span></span><br><span class="line">    <span class="comment"># window = QtWidgets.QDialog() # ui使用的templates\forms是Dialog</span></span><br><span class="line">    main = Ui_MainWindow()</span><br><span class="line">    main.setupUi(window)</span><br><span class="line">    window.show()</span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>需要注意的是qtdesigner选择的templates\forms不同，则windows也是不同的<br><img src="/2017/12/18/PyQt5的安装与Pycharm配置/qtdesigner%E7%9A%84templates-forms.jpg" alt="qtdesigner的templates-forms"></p>
-
+        <p>在有些时候需要使用python开发一些小工具，使用tkinter绘制图形界面需要手撕代码，效率很低。使用PyQT可以使用自带的designer来绘制界面，会很方便，而且PyQt的做出来的界面也比tkinter好看，就是大了点。</p>
+        
       
 
       
@@ -1158,14 +895,6 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python/图形化//" class="article-tag-list-link color4">图形化</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python/图形化/PyQt//" class="article-tag-list-link color5">PyQt</a>
         		</li>
       		
 		</ul>
@@ -1297,15 +1026,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PyQt5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">KMP算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1317,11 +1046,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1330,6 +1055,38 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">最短编辑距离算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">梯度下降算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">apt-get换源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最小二乘法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
               </li>
             
             <div class="clearfix"></div>

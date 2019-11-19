@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>KMP算法（字符串匹配算法） | 你竟然吃香菜&#39;s NoteBook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="KMP算法（字符串匹配算法）前言最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析 题目给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。 示例 1:  输入: haystack = “hello”, nee">
-<meta name="keywords" content="KMP算法">
+  <meta name="description" content="最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析。">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KMP算法（字符串匹配算法）">
 <meta property="og:url" content="http://yoursite.com/2019/09/06/KMP算法（字符串匹配算法）/index.html">
 <meta property="og:site_name" content="你竟然吃香菜&#39;s NoteBook">
-<meta property="og:description" content="KMP算法（字符串匹配算法）前言最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析 题目给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。 示例 1:  输入: haystack = “hello”, nee">
+<meta property="og:description" content="最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-10T08:39:09.753Z">
+<meta property="og:updated_time" content="2019-11-19T12:42:32.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KMP算法（字符串匹配算法）">
-<meta name="twitter:description" content="KMP算法（字符串匹配算法）前言最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析 题目给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。 示例 1:  输入: haystack = “hello”, nee">
+<meta name="twitter:description" content="最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析。">
   
     <link rel="alternative" href="/atom.xml" title="你竟然吃香菜&#39;s NoteBook" type="application/atom+xml">
   
@@ -183,7 +183,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="KMP算法（字符串匹配算法）"><a href="#KMP算法（字符串匹配算法）" class="headerlink" title="KMP算法（字符串匹配算法）"></a>KMP算法（字符串匹配算法）</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析</p>
+        <p>最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析。</p>
+<a id="more"></a>
+
 <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。</p>
 <p>示例 1:</p>
 <blockquote>
@@ -211,7 +213,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">KMP算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -279,7 +281,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#KMP算法（字符串匹配算法）"><span class="toc-number">1.</span> <span class="toc-text">KMP算法（字符串匹配算法）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目"><span class="toc-number">1.0.2.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题"><span class="toc-number">1.0.3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#暴力匹配算法"><span class="toc-number">1.0.3.0.1.</span> <span class="toc-text">暴力匹配算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#KMP算法"><span class="toc-number">1.0.3.0.2.</span> <span class="toc-text">KMP算法</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题"><span class="toc-number">2.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#暴力匹配算法"><span class="toc-number">2.0.1.</span> <span class="toc-text">暴力匹配算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#KMP算法"><span class="toc-number">2.0.2.</span> <span class="toc-text">KMP算法</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -391,15 +393,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PyQt5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">KMP算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -411,11 +413,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">apt换源</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -424,6 +422,38 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">最短编辑距离算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">梯度下降算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">apt-get换源</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">最小二乘法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
               </li>
             
             <div class="clearfix"></div>

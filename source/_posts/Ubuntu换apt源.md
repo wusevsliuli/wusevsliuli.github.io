@@ -3,17 +3,19 @@ title: Ubuntu换apt源
 date: 2019-05-06 11:35:12
 categories:
  - linux
- - ubuntu
 tags: 
  - apt换源
 ---
-# 换apt源
+Ubuntu自带的源都是国外的网址，因此国内使用apt-get安装软件时会很慢，需要更换国内的镜像源解放速度。
+以下为具体步骤：
+<escape><!-- more --></escape>
 
 #### step1 备份原始源数据
 > cp /etc/apt/sources.list /etc/apt/sources.list.backup
 
 #### step2 编辑apt源
 > vi /etc/apt/sources.list
+
 
 写入以下内容(阿里源)
 ```bash

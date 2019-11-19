@@ -2,12 +2,13 @@
 title: nginx配置文件结构
 date: 2019-06-28 14:33:37
 categories:
- - 工具/软件/服务
- - nginx
+ - 服务
 tags:
  - nginx
 ---
-# 基本结构
+Nginx是一个高性能的HTTP和反向代理服务器，也是最常用的web服务器之一。
+下面将详解nginx的配置：
+<escape><!-- more --></escape>
 
 ### 结构如下图所示
 

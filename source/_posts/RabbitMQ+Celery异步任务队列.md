@@ -3,16 +3,13 @@ title: Celery+RabbitMQ异步任务队列
 date: 2019-09-06 18:25:21
 categories:
  - python
- - celery
 tags:
  - celery
  - rabbitmq
 ---
-# Celery+RabbitMQ异步任务队列
-### 前言
-后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，就需要使用消息队列处理了。
-
-以下为个人浅显的使用与理解，celery的详细教程参见 [Celery - 分布式任务队列](http://docs.jinkan.org/docs/celery/index.html#)
+后端开发过程中，有一些比较耗时的任务（大批量数据上传解析）或者耗时无法预估的任务（与第三方交互），或者需要快速响应的场景，需要将这部分放到后台执行，这时就需要使用消息队列进行处理了。
+<escape><!-- more --></escape>
+celery的详细教程参见 [Celery - 分布式任务队列](http://docs.jinkan.org/docs/celery/index.html#)
 
 ### Celery
 #### 消息队列简述

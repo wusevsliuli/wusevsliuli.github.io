@@ -2,16 +2,13 @@
 title: git快速入门
 date: 2018-05-25 19:51:28
 categories:
- - 工具/软件/服务
- - git
+ - 未分类
 tags: 
- - git
+ - GIT
 ---
+Git是非常主流的提供版本控制系统的软件，相比svn来说，更小更方便使用。
+<escape><!-- more --></escape>
 
-# Git快速入门
-## 基本概念：
-1. git： Git是一款提供版本控制系统的软件
-2. github： github是全球最大的~~同性交友社区~~软件项目的托管平台，所以我们可以通过git（github也只支持git）将我们的项目托管到github上面
 ## git基本操作指令：
 ##### 初始化  
 未经过初始化的文件夹无法通过git进行版本控制，不同于svn需要另外创建一个repository，初始化后本文件夹既是repository又是master

@@ -3,15 +3,16 @@ title: PyQt5的安装与Pycharm配置
 date: 2017-12-18 19:12:10
 categories:
  - python
- - 图形化
- - PyQt
 tags:
  - PyQt5
 ---
-# PyQt5安装与配置
+在有些时候需要使用python开发一些小工具，使用tkinter绘制图形界面需要手撕代码，效率很低。使用PyQT可以使用自带的designer来绘制界面，会很方便，而且PyQt的做出来的界面也比tkinter好看，就是大了点。
+<escape><!-- more --></escape>
+
 ## 安装
 > pip install PyQt5
 > pip install pyqt5-tools
+
 ## 配置pycharm
 Setting -> Tools -> Extrater Tools -> +
 1. PYUIC

@@ -3,15 +3,13 @@ title: pandas快速入门
 date: 2019-09-10 18:24:18
 categories:
  - python
- - pandas
 tags:
  - pandas
 ---
-# Pandas 快速入门
-### 前言
-这篇文章通过实例简单的来展示pandas能做些什么，也展示了一些pandas的简单调用方法。
+Pandas是Python用于数据分析的最流行的库，以下以**小学考试成绩**为示例，展示Pandas的使用
+<escape><!-- more --></escape>
 快速系统的学习和了解pandas 推荐阅读 [10 minutes to pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html)。
-示例场景为小学考试成绩
+
 ### 生成数据
 这里随机生成1000+条数据，我们以学号作为DataFrame的Index
 ```python

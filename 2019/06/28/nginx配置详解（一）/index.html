@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/9 | 你竟然吃香菜&#39;s NoteBook</title>
+  <title>nginx配置详解（一） | 你竟然吃香菜&#39;s NoteBook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="你竟然吃香菜&#39;s NoteBook">
-<meta property="og:url" content="http://yoursite.com/archives/2019/09/index.html">
+  <meta name="description" content="Nginx是一个功能丰富的Web服务器。它支持反向代理服务，内置了负载均衡和Web缓存功能。">
+<meta name="keywords" content="nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx配置详解（一）">
+<meta property="og:url" content="http://yoursite.com/2019/06/28/nginx配置详解（一）/index.html">
 <meta property="og:site_name" content="你竟然吃香菜&#39;s NoteBook">
+<meta property="og:description" content="Nginx是一个功能丰富的Web服务器。它支持反向代理服务，内置了负载均衡和Web缓存功能。">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/06/28/nginx配置详解（一）/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84.png">
+<meta property="og:updated_time" content="2019-11-20T12:47:04.304Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="你竟然吃香菜&#39;s NoteBook">
+<meta name="twitter:title" content="nginx配置详解（一）">
+<meta name="twitter:description" content="Nginx是一个功能丰富的Web服务器。它支持反向代理服务，内置了负载均衡和Web缓存功能。">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/28/nginx配置详解（一）/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84.png">
   
     <link rel="alternative" href="/atom.xml" title="你竟然吃香菜&#39;s NoteBook" type="application/atom+xml">
   
@@ -158,173 +165,206 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-nginx配置详解（一）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nginx配置详解（一）
+    </h1>
+  
+
+        
+        <a href="/2019/06/28/nginx配置详解（一）/" class="archive-article-date">
+  	<time datetime="2019-06-28T06:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-28</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Nginx是一个功能丰富的Web服务器。它支持反向代理服务，内置了负载均衡和Web缓存功能。</p>
+<a id="more"></a>
+
+<h4 id="Nginx配置结构"><a href="#Nginx配置结构" class="headerlink" title="Nginx配置结构"></a>Nginx配置结构</h4><p>nginx配置如图所示</p>
+<p><img src="/2019/06/28/nginx配置详解（一）/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84.png" alt="nginx配置结构.png"></p>
+<p>其中server块和location块可以有多个<br>nginx配置中可以通过如下写法定义变量</p>
+<blockquote>
+<p>set $变量名 变量值 </p>
+</blockquote>
+<p>然后在配置中使用<code>$变量名</code>即可替代变量值<br>后续配置说明中以 <strong>$</strong> 标记的都将表示变量，以下为使用的变量的含义，不再赘述</p>
+<ul>
+<li>$path: 表文件/文件夹路径  </li>
+<li>$num: 表数字  </li>
+<li>$user: 表用户名</li>
+<li>$group: 表用户组名</li>
+</ul>
+<p>后续配置中 <strong>|</strong> 符号表示枚举</p>
+<h4 id="1-nginx全局块"><a href="#1-nginx全局块" class="headerlink" title="1. nginx全局块"></a>1. nginx全局块</h4><p>配置示例  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">user <span class="variable">$user</span> <span class="variable">$group</span>;</span><br><span class="line">worker_processes <span class="variable">$num</span>;</span><br><span class="line">pid <span class="variable">$path</span>;</span><br><span class="line">error_log <span class="variable">$path</span> <span class="variable">$level</span>;</span><br><span class="line">include <span class="variable">$path</span>;</span><br></pre></td></tr></table></figure>
+
+<p>说明如下:</p>
+<ul>
+<li>user<br>  Nginx将以此账户来运行<br>  $user表示用户名，默认为nobody<br>  $group表示用户组，默认为nobody </li>
+<li>worker_processes<br>  允许生成的nginx进程数，默认为1，一般不用修改，如果要修改提高性能官方的建议是修改成CPU的内核数，随意设置可能会导致问题，参见<a href="https://www.cnblogs.com/aaron-agu/p/8003831.html" target="_blank" rel="noopener">nginx worker_processes 配置</a>  </li>
+<li>pid<br>  nginx在运行时会生成一个记录运行进程pid的文件<br>  $path表示文件路径，文件名一般为nginx.pid<br>  $level表示日志等级，取值有 <code>debug</code>|<code>info</code>|<code>notice</code>|<code>warn</code>|<code>error</code>|<code>crit</code>  </li>
+<li>error_log<br>  nginx的产生的日志文件路径，也可以放在http块，server块中作为http或server的日志，后续不再说明<br>  $path表示文件路径，默认一般为 nginx安装路径/logs/error.log   </li>
+<li>include<br>  指定拓展的nginx配置文件（仅在主配置文件中），为简化nginx主配置文件，实现多个站点功能<br>  $path表示文件路径，拓展的nginx配置文件，拓展的配置文件只包含server块，如下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="2-events块"><a href="#2-events块" class="headerlink" title="2. events块"></a>2. events块</h4><p>配置示例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">event &#123;</span><br><span class="line">    accept_mutex on|off;</span><br><span class="line">    multi_accept on|off;</span><br><span class="line">    use <span class="variable">$model</span>;</span><br><span class="line">    worker_connections <span class="variable">$num</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明如下  </p>
+<ul>
+<li>accept_mutex<br>  使用串行的方式来处理到达的新连接，防止<a href="https://www.jianshu.com/p/1cdd61a6e3ea" target="_blank" rel="noopener">惊群现象</a>发生，默认为on  </li>
+<li><em>PS*</em>: 对nginx来说，worker_processes一般会设置成CPU个数，即便发生惊群现象影响也较小（相对于Apache几百个进程来说），主要表现为上下文切换增多或负载上升，如果<strong>网站访问量较大</strong>，为了系统吞吐量可以设为off  </li>
+<li>multi_accept<br>  设置一个进程是否同时接受多个网络连接，默认为off  </li>
+<li>use<br>nginx的事件驱动模型<br>$model取值有 <code>select</code>|<code>poll</code>|<code>kqueue</code>|<code>epoll</code>|<code>resig</code>|<code>/dev/poll</code>|<code>eventport</code>  </li>
+<li><em>PS*</em>: 一般不更改，nginx会自动选择一个最适合运行nginx操作系统的。  </li>
+<li><em>PS*</em>: 如果选择的是kqueue，则将忽略multi_accept的配置</li>
+<li>worker_connections<br>最大连接数,默认为512</li>
+</ul>
+<h4 id="3-http块"><a href="#3-http块" class="headerlink" title="3. http块"></a>3. http块</h4><h5 id="3-1-http全局块"><a href="#3-1-http全局块" class="headerlink" title="3.1 http全局块"></a>3.1 http全局块</h5><p>配置示例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include <span class="variable">$type</span>;</span><br><span class="line">    default_type <span class="variable">$type</span>;</span><br><span class="line">    log_format <span class="variable">$name</span> <span class="variable">$format</span>;</span><br><span class="line">    access_log on|off;</span><br><span class="line">    access_log <span class="variable">$path</span> <span class="variable">$name</span>;</span><br><span class="line">    sendfile on|off;</span><br><span class="line">    sendfile_max_chunk <span class="variable">$num</span>;</span><br><span class="line">    keepalive_timeout <span class="variable">$num</span>;</span><br><span class="line">    error_page <span class="variable">$num</span> <span class="variable">$url</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明如下  </p>
+<ul>
+<li>include<br>文件扩展名与文件类型映射表</li>
+<li>default_type<br>默认文件类型，默认为text/plain<br>$type取值有</li>
+<li>log_format<br>自定义日志格式<br>$name为日志格式名，用于下面access_log定义日志格式<br>$format具体日志格式</li>
+<li>access_log<br>http日志<br>on|off 表示是否取消服务日志<br>$path表示日志文件路径<br>$format为log_format定义的日志格式，默认为combined</li>
+<li>sendfile<br>是否允许sendfile方式传输文件，默认为off。可以在http块，server块，location块</li>
+<li>sendfile_max_chunk<br>每个进程每次调用传输文件大小限制，默认为0，即不设上限<br>$num为文件大小, k为单位</li>
+<li>keepalive_timeout<br>连接超时时间，默认为75(秒)，可以在http，server，location块设置</li>
+<li>error_page<br>发生某种错误页跳转的页面，如404等<h5 id="3-2-upstream块"><a href="#3-2-upstream块" class="headerlink" title="3.2 upstream块"></a>3.2 upstream块</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream <span class="variable">$name</span> &#123;</span><br><span class="line">        server <span class="variable">$ip</span>:<span class="variable">$port</span>;</span><br><span class="line">        server <span class="variable">$ip</span>:<span class="variable">$port</span> backup;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>说明如下</p>
+<h5 id="3-3-server块"><a href="#3-3-server块" class="headerlink" title="3.3 server块"></a>3.3 server块</h5><h6 id="3-3-1-server全局块"><a href="#3-3-1-server全局块" class="headerlink" title="3.3.1 server全局块"></a>3.3.1 server全局块</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        keepalive_requests <span class="variable">$num</span>;</span><br><span class="line">        listen <span class="variable">$num</span>;</span><br><span class="line">        server_name <span class="variable">$host</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明如下  </p>
+<ul>
+<li>keepalive_requests<br>单连接请求上限次数</li>
+<li>listen<br>监听端口</li>
+<li>server_name<br>监听地址<h6 id="3-3-2-location块"><a href="#3-3-2-location块" class="headerlink" title="3.3.2 location块"></a>3.3.2 location块</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        location <span class="variable">$reg</span> &#123;</span><br><span class="line">            root <span class="variable">$path</span>;</span><br><span class="line">            index <span class="variable">$filename</span>;</span><br><span class="line">            proxy_pass <span class="variable">$host</span>;</span><br><span class="line">            deny <span class="variable">$ip</span>;</span><br><span class="line">            allow <span class="variable">$ip</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>说明如下</p>
+<ul>
+<li>$reg<br>请求的url过滤，正则匹配，~为区分大小写，~*为不区分大小写</li>
+<li>root<br>根目录</li>
+<li>index<br>默认页</li>
+<li>proxy_pass<br>请求转向$host服务器</li>
+<li>deny<br>拒绝的ip</li>
+<li>allow<br>允许的ip</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/10/pandas快速入门/" class="archive-article-date">
-  	<time datetime="2019-09-10T10:24:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/pandas快速入门/">pandas快速入门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">nginx</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
+        			<a href="/categories/服务//" class="article-tag-list-link color3">服务</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/06/KMP算法（字符串匹配算法）/" class="archive-article-date">
-  	<time datetime="2019-09-06T10:25:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/08/29/最短编辑距离算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          最短编辑距离算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/06/Ubuntu换apt源/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu换apt源</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/06/KMP算法（字符串匹配算法）/">KMP算法（字符串匹配算法）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Nginx配置结构"><span class="toc-number">1.</span> <span class="toc-text">Nginx配置结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-nginx全局块"><span class="toc-number">2.</span> <span class="toc-text">1. nginx全局块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-events块"><span class="toc-number">3.</span> <span class="toc-text">2. events块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-http块"><span class="toc-number">4.</span> <span class="toc-text">3. http块</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-http全局块"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 http全局块</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-upstream块"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 upstream块</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-server块"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 server块</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#3-3-1-server全局块"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.3.1 server全局块</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-3-2-location块"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.3.2 location块</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/06/RabbitMQ+Celery异步任务队列/" class="archive-article-date">
-  	<time datetime="2019-09-06T10:25:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/06/RabbitMQ+Celery异步任务队列/">Celery+RabbitMQ异步任务队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">celery</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">rabbitmq</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/python//" class="article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -347,8 +387,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

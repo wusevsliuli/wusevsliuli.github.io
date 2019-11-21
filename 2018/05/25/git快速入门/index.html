@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/05/25/git快速入门/%E6%B2%A1%E6%9C%89%E5%AF%B9%E5%BA%94%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/25/git快速入门/%E6%97%A0%E8%BF%9C%E7%A8%8B%E6%8E%A8%E9%80%81%E6%9D%83%E9%99%90.png">
 <meta property="og:image" content="http://yoursite.com/2018/05/25/git快速入门/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%91%8A%E8%AD%A6.png">
-<meta property="og:updated_time" content="2019-11-19T12:43:38.024Z">
+<meta property="og:updated_time" content="2019-11-21T09:56:00.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git快速入门">
 <meta name="twitter:description" content="Git是非常主流的提供版本控制系统的软件，相比svn来说，更小更方便使用。">
@@ -229,16 +229,16 @@
 <h5 id="step7-push远端origin代码到master"><a href="#step7-push远端origin代码到master" class="headerlink" title="step7:  push远端origin代码到master"></a>step7:  push远端origin代码到master</h5><blockquote>
 <p>git push origin master</p>
 </blockquote>
-<h2 id="错误情况处理："><a href="#错误情况处理：" class="headerlink" title="错误情况处理："></a>错误情况处理：</h2><h3 id="push错误"><a href="#push错误" class="headerlink" title="push错误"></a>push错误</h3><h5 id="1-src-refspec-master-does-not-match-any"><a href="#1-src-refspec-master-does-not-match-any" class="headerlink" title="1. src refspec master does not match any."></a>1. src refspec master does not match any.</h5><p><img src="/2018/05/25/git快速入门/%E6%B2%A1%E6%9C%89%E5%B7%B2add%E7%9A%84%E6%96%87%E4%BB%B6.png" alt="没有已add的文件"><br><strong>错误原因</strong>： 目录中没有文件，空目录是不能提交<br><strong>处理方法</strong>：</p>
+<h2 id="错误情况处理："><a href="#错误情况处理：" class="headerlink" title="错误情况处理："></a>错误情况处理：</h2><h3 id="push错误"><a href="#push错误" class="headerlink" title="push错误"></a>push错误</h3><h5 id="1-src-refspec-master-does-not-match-any"><a href="#1-src-refspec-master-does-not-match-any" class="headerlink" title="1. src refspec master does not match any."></a>1. src refspec master does not match any.</h5><p><img src="/2018/05/25/git快速入门/%E6%B2%A1%E6%9C%89%E5%B7%B2add%E7%9A%84%E6%96%87%E4%BB%B6.png" alt="没有已add的文件"><br><strong>错误原因</strong>： 目录中没有文件，空目录是不能提交<br><strong>处理方法</strong>：  </p>
 <blockquote>
 <p>git add .<br>git commit -m “description”</p>
 </blockquote>
-<h5 id="2-The-current-branch-master-has-no-upstream-branch"><a href="#2-The-current-branch-master-has-no-upstream-branch" class="headerlink" title="2. The current branch master has no upstream branch."></a>2. The current branch master has no upstream branch.</h5><p><img src="/2018/05/25/git快速入门/%E6%B2%A1%E6%9C%89%E5%AF%B9%E5%BA%94%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF.png" alt="没有对应的远程分支"><br><strong>错误原因</strong>：当前分支主机没有上游分支<br><strong>处理方法</strong>：</p>
+<h5 id="2-The-current-branch-master-has-no-upstream-branch"><a href="#2-The-current-branch-master-has-no-upstream-branch" class="headerlink" title="2. The current branch master has no upstream branch."></a>2. The current branch master has no upstream branch.</h5><p><img src="/2018/05/25/git快速入门/%E6%B2%A1%E6%9C%89%E5%AF%B9%E5%BA%94%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF.png" alt="没有对应的远程分支"><br><strong>错误原因</strong>：当前分支主机没有上游分支<br><strong>处理方法</strong>：  </p>
 <blockquote>
-<p>git push –set-upstream origin master</p>
+<p>git push –set-upstream origin master  </p>
 </blockquote>
 <h5 id="3-Permission-denied-publickey-Could-not-read-from-remote-repository"><a href="#3-Permission-denied-publickey-Could-not-read-from-remote-repository" class="headerlink" title="3. Permission denied (publickey). Could not read from remote    repository."></a>3. Permission denied (publickey). Could not read from remote    repository.</h5><p><img src="/2018/05/25/git快速入门/%E6%97%A0%E8%BF%9C%E7%A8%8B%E6%8E%A8%E9%80%81%E6%9D%83%E9%99%90.png" alt="无远程推送权限"><br><strong>错误原因</strong>：没有远程推送权限<br><strong>处理方法</strong>：<br>参见 <a href="https://blog.csdn.net/weixin_44394753/article/details/91410463" target="_blank" rel="noopener">github上传项目的时候报出git@github.com: Permission denied (publickey). fatal: Could not read from remote repo</a></p>
-<h2 id="告警原因与处理"><a href="#告警原因与处理" class="headerlink" title="告警原因与处理:"></a>告警原因与处理:</h2><h3 id="push告警"><a href="#push告警" class="headerlink" title="push告警"></a>push告警</h3><h5 id="1-LF-will-be-replaced-by-CRLF-in-xxx-The-file-will-have-its-original-line-endings-in-your-working-directory"><a href="#1-LF-will-be-replaced-by-CRLF-in-xxx-The-file-will-have-its-original-line-endings-in-your-working-directory" class="headerlink" title="1. LF will be replaced by CRLF in xxx. The file will have its original line endings in your working directory."></a>1. LF will be replaced by CRLF in xxx. The file will have its original line endings in your working directory.</h5><p><img src="/2018/05/25/git快速入门/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%91%8A%E8%AD%A6.png" alt="跨平台告警"><br><strong>告警原因</strong>：跨平台的开发情况</p>
+<h2 id="告警原因与处理"><a href="#告警原因与处理" class="headerlink" title="告警原因与处理:"></a>告警原因与处理:</h2><h3 id="push告警"><a href="#push告警" class="headerlink" title="push告警"></a>push告警</h3><h5 id="1-LF-will-be-replaced-by-CRLF-in-xxx-The-file-will-have-its-original-line-endings-in-your-working-directory"><a href="#1-LF-will-be-replaced-by-CRLF-in-xxx-The-file-will-have-its-original-line-endings-in-your-working-directory" class="headerlink" title="1. LF will be replaced by CRLF in xxx. The file will have its original line endings in your working directory."></a>1. LF will be replaced by CRLF in xxx. The file will have its original line endings in your working directory.</h5><p><img src="/2018/05/25/git快速入门/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%91%8A%E8%AD%A6.png" alt="跨平台告警"><br><strong>告警原因</strong>：跨平台的开发情况  </p>
 
       
 
@@ -292,8 +292,8 @@
     </a>
   
   
-    <a href="/2017/12/18/PyQt5的安装与Pycharm配置/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">PyQt5的安装与Pycharm配置</div>
+    <a href="/2017/12/18/使用Pycharm开发PyQt5应用（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用Pycharm开发PyQt5应用（一）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -440,7 +440,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color2">celery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -448,11 +452,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">celery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
               </li>
              
               <li class="article-tag-list-item">

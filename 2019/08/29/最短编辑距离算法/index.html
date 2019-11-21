@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/08/29/最短编辑距离算法/%E5%88%9D%E5%A7%8B%E5%8C%96.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/29/最短编辑距离算法/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AF%B9%E6%AF%94.png">
-<meta property="og:updated_time" content="2019-11-19T12:24:21.553Z">
+<meta property="og:updated_time" content="2019-11-21T09:57:20.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最短编辑距离算法">
 <meta name="twitter:description" content="在最近碰到项目时需要对文本内容进行分类。一开始是使用机器学习的nltk库来分类，然后发现并不符合预期，因为文本内容是套用模板生成的，不同之处只有部分变量内容。而nltk库是通过文本整体概率来分类的，因此不符合预期情况。以下为最短编辑距离算法的题目与解法与python代码">
@@ -186,7 +186,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在最近碰到项目时需要对文本内容进行分类。一开始是使用机器学习的nltk库来分类，然后发现并不符合预期，因为文本内容是套用模板生成的，不同之处只有部分变量内容。而nltk库是通过文本整体概率来分类的，因此不符合预期情况。<br>以下为最短编辑距离算法的<strong>题目</strong>与<strong>解法</strong>与<strong>python代码</strong></p>
+        <p>在最近碰到项目时需要对文本内容进行分类。一开始是使用机器学习的nltk库来分类，然后发现并不符合预期，因为文本内容是套用模板生成的，不同之处只有部分变量内容。而nltk库是通过文本整体概率来分类的，因此不符合预期情况。<br>以下为最短编辑距离算法的<strong>题目</strong>与<strong>解法</strong>与<strong>python代码</strong>  </p>
 <a id="more"></a>
 
 <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定两个单词 word1 和 word2，计算出将 word1 转换成 word2 所使用的最少操作数 。<br>你可以对一个单词进行如下三种操作：</p>
@@ -197,18 +197,17 @@
 </ol>
 <p>示例 1:</p>
 <blockquote>
-<p>输入: word1 = “horse”, word2 = “ros”<br>输出: 3<br>解释:<br>horse -&gt; rorse (将 ‘h’ 替换为 ‘r’)<br>rorse -&gt; rose (删除 ‘r’)<br>rose -&gt; ros (删除 ‘e’)</p>
+<p>输入: word1 = “horse”, word2 = “ros”<br>输出: 3  </p>
 </blockquote>
-<p>示例 2:</p>
+<p>解释:<br>horse -&gt; rorse (将 ‘h’ 替换为 ‘r’)<br>rorse -&gt; rose (删除 ‘r’)<br>rose -&gt; ros (删除 ‘e’)  </p>
+<p>示例 2:  </p>
 <blockquote>
-<p>输入: word1 = “intention”, word2 = “execution”<br>输出: 5<br>解释:<br>intention -&gt; inention (删除 ‘t’)<br>inention -&gt; enention (将 ‘i’ 替换为 ‘e’)<br>enention -&gt; exention (将 ‘n’ 替换为 ‘x’)<br>exention -&gt; exection (将 ‘n’ 替换为 ‘c’)<br>exection -&gt; execution (插入 ‘u’)</p>
+<p>输入: word1 = “intention”, word2 = “execution”<br>输出: 5  </p>
 </blockquote>
+<p>解释:<br>intention -&gt; inention (删除 ‘t’)<br>inention -&gt; enention (将 ‘i’ 替换为 ‘e’)<br>enention -&gt; exention (将 ‘n’ 替换为 ‘x’)<br>exention -&gt; exection (将 ‘n’ 替换为 ‘c’)<br>exection -&gt; execution (插入 ‘u’)  </p>
 <p>来源：<a href="https://leetcode-cn.com/problems/edit-distance" target="_blank" rel="noopener">力扣（LeetCode）</a></p>
-<h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><p><strong>初始化table1</strong>：初始填充<br><img src="/2019/08/29/最短编辑距离算法/%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt="初始化.png"><br><strong>初始化table2</strong>：对比字符串生成<br><img src="/2019/08/29/最短编辑距离算法/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AF%B9%E6%AF%94.png" alt="字符串对比.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(x, y) 处的值为 min &#123;</span><br><span class="line">    table1[x-1,y], </span><br><span class="line">    table1[x, y-1],</span><br><span class="line">    table1[x-1, y-1] + table2[x, y]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>需要逐步计算，table[len(str1), len(str2)] 即为最短编辑次数</strong></p>
-<h3 id="代码Python"><a href="#代码Python" class="headerlink" title="代码Python"></a>代码Python</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_similarity</span><span class="params">(txt1, txt2)</span>:</span>       </span><br><span class="line">    <span class="string">"""    </span></span><br><span class="line"><span class="string">    获取txt1和txt2的相似度 </span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    :param txt1:  </span></span><br><span class="line"><span class="string">    :param txt2:  </span></span><br><span class="line"><span class="string">    :return:    </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    length1, length2 = len(txt1), len(txt2)   </span><br><span class="line">    matrix = numpy.zeros((length2 + <span class="number">1</span>, length1 + <span class="number">1</span>))  <span class="comment"># 创建矩阵 </span></span><br><span class="line">    <span class="comment"># 初始化矩阵    </span></span><br><span class="line">    <span class="keyword">for</span> col_idx <span class="keyword">in</span> range(length1):    </span><br><span class="line">        matrix[<span class="number">0</span>][col_idx] = col_idx    </span><br><span class="line">        <span class="keyword">for</span> row_idx <span class="keyword">in</span> range(length2):      </span><br><span class="line">            matrix[row_idx][<span class="number">0</span>] = row_idx    </span><br><span class="line">    <span class="comment"># 开始进行动态规划    </span></span><br><span class="line">    <span class="keyword">for</span> row_idx <span class="keyword">in</span> range(<span class="number">1</span>, length2 + <span class="number">1</span>):    </span><br><span class="line">        <span class="keyword">for</span> col_idx <span class="keyword">in</span> range(<span class="number">1</span>, length1 + <span class="number">1</span>):     </span><br><span class="line">            cost = <span class="number">0</span> <span class="keyword">if</span> txt1[col_idx - <span class="number">1</span>] == txt2[row_idx - <span class="number">1</span>] <span class="keyword">else</span> <span class="number">1</span>  <span class="comment"># 代价值     </span></span><br><span class="line">            <span class="comment"># 三种字符串操作方式增加 删除 替换      </span></span><br><span class="line">            edit_exchange_dis = matrix[row_idx - <span class="number">1</span>][col_idx - <span class="number">1</span>] + cost  <span class="comment"># 替换        </span></span><br><span class="line">            edit_add_dis = matrix[row_idx - <span class="number">1</span>][col_idx] + <span class="number">1</span>  <span class="comment"># 添加    </span></span><br><span class="line">            edit_del_dis = matrix[row_idx][col_idx - <span class="number">1</span>] + <span class="number">1</span>  <span class="comment"># 删除      </span></span><br><span class="line">            matrix[row_idx][col_idx] = min(edit_exchange_dis, edit_add_dis, edit_del_dis)  <span class="comment"># 选取最小的代价  </span></span><br><span class="line">    <span class="comment"># return matrix[length2][length1]  # 返回最短编辑距离</span></span><br><span class="line">    similarity = <span class="number">1</span> - matrix[length2][length1] / max(length1, length2) </span><br><span class="line">    print(<span class="string">"相似度"</span>, similarity)   </span><br><span class="line">    <span class="keyword">return</span> similarity</span><br></pre></td></tr></table></figure>
+<h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><p><strong>初始化table1</strong>：初始填充<br><img src="/2019/08/29/最短编辑距离算法/%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt="初始化.png"><br><strong>初始化table2</strong>：对比字符串生成<br><img src="/2019/08/29/最短编辑距离算法/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AF%B9%E6%AF%94.png" alt="字符串对比.png">  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">(x, y) 处的值为 min &#123;</span><br><span class="line">    table1[x-1,y], </span><br><span class="line">    table1[x, y-1],</span><br><span class="line">    table1[x-1, y-1] + table2[x, y]</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line">**需要逐步计算，table[len(str1), len(str2)] 即为最短编辑次数**  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 代码Python</span><br><span class="line">```python</span><br><span class="line">import numpy</span><br><span class="line"></span><br><span class="line">def get_similarity(txt1, txt2):       </span><br><span class="line">    &quot;&quot;&quot;    </span><br><span class="line">    获取txt1和txt2的相似度 </span><br><span class="line">    </span><br><span class="line">    :param txt1:  </span><br><span class="line">    :param txt2:  </span><br><span class="line">    :return:    </span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    length1, length2 = len(txt1), len(txt2)   </span><br><span class="line">    matrix = numpy.zeros((length2 + 1, length1 + 1))  # 创建矩阵 </span><br><span class="line">    # 初始化矩阵    </span><br><span class="line">    for col_idx in range(length1):    </span><br><span class="line">        matrix[0][col_idx] = col_idx    </span><br><span class="line">        for row_idx in range(length2):      </span><br><span class="line">            matrix[row_idx][0] = row_idx    </span><br><span class="line">    # 开始进行动态规划    </span><br><span class="line">    for row_idx in range(1, length2 + 1):    </span><br><span class="line">        for col_idx in range(1, length1 + 1):     </span><br><span class="line">            cost = 0 if txt1[col_idx - 1] == txt2[row_idx - 1] else 1  # 代价值     </span><br><span class="line">            # 三种字符串操作方式增加 删除 替换      </span><br><span class="line">            edit_exchange_dis = matrix[row_idx - 1][col_idx - 1] + cost  # 替换        </span><br><span class="line">            edit_add_dis = matrix[row_idx - 1][col_idx] + 1  # 添加    </span><br><span class="line">            edit_del_dis = matrix[row_idx][col_idx - 1] + 1  # 删除      </span><br><span class="line">            matrix[row_idx][col_idx] = min(edit_exchange_dis, edit_add_dis, edit_del_dis)  # 选取最小的代价  </span><br><span class="line">    # return matrix[length2][length1]  # 返回最短编辑距离</span><br><span class="line">    similarity = 1 - matrix[length2][length1] / max(length1, length2) </span><br><span class="line">    print(&quot;相似度&quot;, similarity)   </span><br><span class="line">    return similarity</span><br></pre></td></tr></table></figure>
 
 
       
@@ -291,7 +290,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题"><span class="toc-number">2.</span> <span class="toc-text">解题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码Python"><span class="toc-number">3.</span> <span class="toc-text">代码Python</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题"><span class="toc-number">2.</span> <span class="toc-text">解题</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -411,7 +410,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color2">celery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -419,11 +422,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">celery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="你竟然吃香菜&#39;s NoteBook">
 <meta property="og:description" content="Ubuntu自带的源都是国外的网址，因此国内使用apt-get安装软件时会很慢，需要更换国内的镜像源解放速度。以下为具体步骤：">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-19T12:38:00.234Z">
+<meta property="og:updated_time" content="2019-11-21T09:45:54.079Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu换apt源">
 <meta name="twitter:description" content="Ubuntu自带的源都是国外的网址，因此国内使用apt-get安装软件时会很慢，需要更换国内的镜像源解放速度。以下为具体步骤：">
@@ -186,9 +186,11 @@
         <p>Ubuntu自带的源都是国外的网址，因此国内使用apt-get安装软件时会很慢，需要更换国内的镜像源解放速度。<br>以下为具体步骤：</p>
 <a id="more"></a>
 
-<h4 id="step1-备份原始源数据"><a href="#step1-备份原始源数据" class="headerlink" title="step1 备份原始源数据"></a>step1 备份原始源数据</h4><blockquote>
+
+<h2 id="apt换源步骤"><a href="#apt换源步骤" class="headerlink" title="apt换源步骤"></a>apt换源步骤</h2><h4 id="step1-备份原始源数据"><a href="#step1-备份原始源数据" class="headerlink" title="step1 备份原始源数据"></a>step1 备份原始源数据</h4><blockquote>
 <p>cp /etc/apt/sources.list /etc/apt/sources.list.backup</p>
 </blockquote>
+<p>备份的目的是配置错误后还可以还原</p>
 <h4 id="step2-编辑apt源"><a href="#step2-编辑apt源" class="headerlink" title="step2 编辑apt源"></a>step2 编辑apt源</h4><blockquote>
 <p>vi /etc/apt/sources.list</p>
 </blockquote>
@@ -198,7 +200,7 @@
 <h4 id="step3-更新源信息（刷新）"><a href="#step3-更新源信息（刷新）" class="headerlink" title="step3 更新源信息（刷新）"></a>step3 更新源信息（刷新）</h4><blockquote>
 <p>sudo apt-get update<br>sudo apt-get upgrade</p>
 </blockquote>
-<h2 id="其他源"><a href="#其他源" class="headerlink" title="其他源"></a>其他源</h2><h5 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<h2 id="其他apt源"><a href="#其他apt源" class="headerlink" title="其他apt源"></a>其他apt源</h2><h5 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
 <h5 id="网易源"><a href="#网易源" class="headerlink" title="网易源"></a>网易源</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
       
@@ -281,7 +283,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#step1-备份原始源数据"><span class="toc-number">1.</span> <span class="toc-text">step1 备份原始源数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#step2-编辑apt源"><span class="toc-number">2.</span> <span class="toc-text">step2 编辑apt源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#step3-更新源信息（刷新）"><span class="toc-number">3.</span> <span class="toc-text">step3 更新源信息（刷新）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他源"><span class="toc-number"></span> <span class="toc-text">其他源</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#清华源"><span class="toc-number">0.1.</span> <span class="toc-text">清华源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#网易源"><span class="toc-number">0.2.</span> <span class="toc-text">网易源</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#apt换源步骤"><span class="toc-number">1.</span> <span class="toc-text">apt换源步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#step1-备份原始源数据"><span class="toc-number">1.0.1.</span> <span class="toc-text">step1 备份原始源数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#step2-编辑apt源"><span class="toc-number">1.0.2.</span> <span class="toc-text">step2 编辑apt源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#step3-更新源信息（刷新）"><span class="toc-number">1.0.3.</span> <span class="toc-text">step3 更新源信息（刷新）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他apt源"><span class="toc-number">2.</span> <span class="toc-text">其他apt源</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#清华源"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">清华源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#网易源"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">网易源</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -401,7 +403,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color2">celery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -409,11 +415,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">celery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
               </li>
              
               <li class="article-tag-list-item">

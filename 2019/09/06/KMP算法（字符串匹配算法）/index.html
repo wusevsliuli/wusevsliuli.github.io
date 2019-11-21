@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="你竟然吃香菜&#39;s NoteBook">
 <meta property="og:description" content="最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-19T12:42:32.450Z">
+<meta property="og:updated_time" content="2019-11-21T09:53:51.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KMP算法（字符串匹配算法）">
 <meta name="twitter:description" content="最近各种文本类匹配搜索的数据分析任务，写解析器写的头都大了，KMP算法算是非常著名的算法了，这里写一下算法的解析。">
@@ -193,13 +193,21 @@
 </blockquote>
 <p>示例 2:</p>
 <blockquote>
-<p>输入: haystack = “aaaaa”, needle = “bba”<br>输出: -1<br>说明:</p>
+<p>输入: haystack = “aaaaa”, needle = “bba”<br>输出: -1</p>
 </blockquote>
+<p>说明:</p>
 <p>当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。</p>
 <p>来源：<a href="https://leetcode-cn.com/problems/implement-strstr" target="_blank" rel="noopener">力扣（LeetCode）</a></p>
 <h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><h5 id="暴力匹配算法"><a href="#暴力匹配算法" class="headerlink" title="暴力匹配算法"></a>暴力匹配算法</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 暴力匹配算法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_find</span><span class="params">(S, P)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> P:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    i = <span class="number">0</span>  <span class="comment"># S 中匹配 P 的第一个字符的位置，也是最终的返回值</span></span><br><span class="line">    j = <span class="number">0</span>  <span class="comment"># S 中匹配 P 的位置，此时比较的是 S[i+j] ?= P[j]</span></span><br><span class="line">    <span class="keyword">while</span> i + len(P) &lt;= len(S):</span><br><span class="line">        <span class="keyword">if</span> S[i + j] == P[j]:</span><br><span class="line">            <span class="comment"># 相等情况下，j向前移动一位</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> j == len(P):</span><br><span class="line">                <span class="keyword">return</span> i</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 不相等的情况下重置j, 然后i向前移动一位</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h5><p>KMP算法是基于暴力匹配算法的优化<br>文本字符串串为 <strong>S</strong>, 模式串(需要匹配的字符串)为 <strong>P</strong><br>假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置<br>    如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++，继续匹配下一个字符；<br>    如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]。此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。换言之，当匹配失败时，模式串向右移动的位数为：失配字符所在位置 - 失配字符对应的next 值（next 数组的求解会在下文的3.3.3节中详细阐述），即移动的实际位数为：j - next[j]，且此值大于等于1。</p>
+<h5 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h5><p>KMP算法是基于暴力匹配算法的优化<br>文本字符串串为 <strong>S</strong>, 模式串(需要匹配的字符串)为 <strong>P</strong>  </p>
+<ul>
+<li>假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置  <ul>
+<li>如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++，继续匹配下一个字符；  </li>
+<li>如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]<br>  此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。换言之，当匹配失败时，模式串向右移动的位数为：失配字符所在位置 - 失配字符对应的next 值（next 数组的求解会在下文的3.3.3节中详细阐述），即移动的实际位数为：j - next[j]，且此值大于等于1。  </li>
+</ul>
+</li>
+</ul>
 
       
 
@@ -401,7 +409,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color2">celery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -409,11 +421,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">celery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
               </li>
              
               <li class="article-tag-list-item">

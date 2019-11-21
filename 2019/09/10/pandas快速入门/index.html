@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/10/pandas快速入门/Image9.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/10/pandas快速入门/Image10.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/10/pandas快速入门/Image11.png">
-<meta property="og:updated_time" content="2019-11-19T12:42:10.168Z">
+<meta property="og:updated_time" content="2019-11-21T09:47:36.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pandas快速入门">
 <meta name="twitter:description" content="Pandas是Python用于数据分析的最流行的库，以下以小学考试成绩为示例，展示Pandas的使用">
@@ -197,6 +197,8 @@
       
         <p>Pandas是Python用于数据分析的最流行的库，以下以<strong>小学考试成绩</strong>为示例，展示Pandas的使用</p>
 <a id="more"></a>
+
+
 <p>快速系统的学习和了解pandas 推荐阅读 <a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html" target="_blank" rel="noopener">10 minutes to pandas</a>。</p>
 <h3 id="生成数据"><a href="#生成数据" class="headerlink" title="生成数据"></a>生成数据</h3><p>这里随机生成1000+条数据，我们以学号作为DataFrame的Index</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_random_data</span><span class="params">()</span>:</span></span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(random.randint(<span class="number">1000</span>, <span class="number">1200</span>)):</span><br><span class="line">        grade_list =  [<span class="string">'一年级'</span>, <span class="string">'二年级'</span>, <span class="string">'三年级'</span>, <span class="string">'四年级'</span>, <span class="string">'五年级'</span>, <span class="string">'六年级'</span>]</span><br><span class="line">        grade = random.choice(grade_list)</span><br><span class="line">        data.append(&#123;</span><br><span class="line">            <span class="string">'学号'</span>: <span class="string">"&#123;:0&gt;4&#125;&#123;:0&gt;4&#125;"</span>.format(<span class="number">2019</span> - grade_list.index(grade), i),</span><br><span class="line">            <span class="string">'年级'</span>: grade,</span><br><span class="line">            <span class="string">'语文'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'数学'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'英语'</span>: <span class="literal">None</span> <span class="keyword">if</span> grade <span class="keyword">in</span> [<span class="string">'一年级'</span>, <span class="string">'二年级'</span>] <span class="keyword">else</span> random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'品德'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'体育'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'美术'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">            <span class="string">'音乐'</span>: random.randint(<span class="number">50</span>, <span class="number">100</span>),</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">    </span><br><span class="line">data = get_random_data()</span><br><span class="line">df = pandas.DataFrame(data, index=[stu[<span class="string">'学号'</span>] <span class="keyword">for</span> stu <span class="keyword">in</span> data])</span><br></pre></td></tr></table></figure>
@@ -446,7 +448,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
+                <a href="javascript:void(0)" class="js-tag color2">celery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -454,11 +460,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">celery</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
+                <a href="javascript:void(0)" class="js-tag color4">GIT</a>
               </li>
              
               <li class="article-tag-list-item">

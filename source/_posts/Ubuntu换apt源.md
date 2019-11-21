@@ -10,12 +10,15 @@ Ubuntu自带的源都是国外的网址，因此国内使用apt-get安装软件�
 以下为具体步骤：
 <escape><!-- more --></escape>
 
+
+## apt换源步骤
 #### step1 备份原始源数据
 > cp /etc/apt/sources.list /etc/apt/sources.list.backup
 
+备份的目的是配置错误后还可以还原
+
 #### step2 编辑apt源
 > vi /etc/apt/sources.list
-
 
 写入以下内容(阿里源)
 ```bash
@@ -36,11 +39,11 @@ deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
 deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe
 ```
 #### step3 更新源信息（刷新）
-> sudo apt-get update
+> sudo apt-get update  
 > sudo apt-get upgrade
 
 
-## 其他源
+## 其他apt源
 ##### 清华源
 ```bash
 deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse

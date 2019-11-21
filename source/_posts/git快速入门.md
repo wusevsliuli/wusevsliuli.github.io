@@ -49,28 +49,28 @@ Git是非常主流的提供版本控制系统的软件，相比svn来说，更�
 ## 错误情况处理：
 ### push错误
 ##### 1. src refspec master does not match any.
-![没有已add的文件](git快速入门/没有已add的文件.png)
-**错误原因**： 目录中没有文件，空目录是不能提交  
-**处理方法**：
+![没有已add的文件](git快速入门/没有已add的文件.png)    
+**错误原因**： 目录中没有文件，空目录是不能提交   
+**处理方法**：  
 > git add .
 > git commit -m "description"
 
 ##### 2. The current branch master has no upstream branch. 
-![没有对应的远程分支](git快速入门/没有对应的远程分支.png)
-**错误原因**：当前分支主机没有上游分支  
-**处理方法**：
-> git push --set-upstream origin master
+![没有对应的远程分支](git快速入门/没有对应的远程分支.png)   
+**错误原因**：当前分支主机没有上游分支    
+**处理方法**：  
+> git push --set-upstream origin master  
 
-##### 3. Permission denied (publickey). Could not read from remote    repository.
-![无远程推送权限](git快速入门/无远程推送权限.png)
-**错误原因**：没有远程推送权限
-**处理方法**：
+##### 3. Permission denied (publickey). Could not read from remote    repository.  
+![无远程推送权限](git快速入门/无远程推送权限.png)  
+**错误原因**：没有远程推送权限  
+**处理方法**：  
 参见 [github上传项目的时候报出git@github.com: Permission denied (publickey). fatal: Could not read from remote repo](https://blog.csdn.net/weixin_44394753/article/details/91410463)
 
 
 ## 告警原因与处理:
 ### push告警
 ##### 1. LF will be replaced by CRLF in xxx. The file will have its original line endings in your working directory.  
-![跨平台告警](git快速入门/跨平台告警.png)
-**告警原因**：跨平台的开发情况
+![跨平台告警](git快速入门/跨平台告警.png)  
+**告警原因**：跨平台的开发情况  
 

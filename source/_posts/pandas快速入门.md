@@ -8,6 +8,8 @@ tags:
 ---
 Pandas是Python用于数据分析的最流行的库，以下以**小学考试成绩**为示例，展示Pandas的使用
 <escape><!-- more --></escape>
+
+
 快速系统的学习和了解pandas 推荐阅读 [10 minutes to pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html)。
 
 ### 生成数据

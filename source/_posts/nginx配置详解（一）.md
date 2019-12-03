@@ -102,6 +102,7 @@ http {
     access_log $path $name;
     sendfile on|off;
     sendfile_max_chunk $size;
+    underscores_in_headers on|off;
     keepalive_timeout $num;
     error_page $num $url;
 }
@@ -131,6 +132,9 @@ http请求响应头的Content-Type的值，当映射表找不到时，用此配�
 * sendfile_max_chunk  
     调用sendfile方法时，每个进程每次调用传输文件大小限制，默认为0，即不设上限  
     \$size为文件大小  
+* underscores_in_headers  
+    是否不忽略带_的请求参数，默认是off，当为off时，客户端请求的参数中带有_时，这个参数就会被忽略，服务器端不会收到该参数  
+    **e.g.** 客户端请求{"user_name": "admin"}，当该字段为off时，通过nginx转发后的服务器将收不到"user_name"
 * keepalive_timeout  
     连接超时时间，允许在此时间内客户端通过同一链接再次发送数据，默认为75(秒)，可以在http，server，location块设置。  
     http/https是个无状态协议，同时也是个tcp协议，tcp协议有短链接和长链接之分。短链接情况下，客户端向服务器发送一个请求后，服务器响应完毕就断开tcp链接；长链接情况下，服务响应完毕后并不立即断开tcp链接，允许客户端利用同一链接再次发送请求，减少了重新建立链接的开销  
@@ -144,7 +148,7 @@ http请求响应头的Content-Type的值，当映射表找不到时，用此配�
     error_page 404 500 =200 /index.html  # 404或500状态返回时，跳转至index.html页面并且状态变为200  
     ```
 ##### 3.2 upstream块
-upstream 为nginx的负载均衡配置，也可以理解成nginx的反向代理配置
+upstream 为nginx的负载均衡配置，也可以理解成nginx的反向代理配置（location字段加上proxy_pass配合upstream即实现了负载均衡的反向代理）
 ```bash
 http {
     upstream $name {
@@ -157,7 +161,7 @@ http {
 ```
 说明如下
 * $name  
-    这个反向代理的名称，可以看做是域名
+    这个反向代理的名称，可以看做是域名，可在location的proxy_pass字段使用
 * ip_hash  
     使用ip hash算法，即对客户端请求的ip进行hash操作，然后根据hash结果将同一个客户端ip的请求分发给同一台服务器进行处理，可以解决session不共享的问题  
 * server \$ip:\$port  
@@ -179,7 +183,8 @@ http {
         keepalive_requests $num;
         keepalive_timeout $num;
         listen $num;
-        server_name $host;
+        listen $ip:$num;
+        server_name $domain;
     }
 }
 ```
@@ -190,10 +195,14 @@ http {
     同http全局块  
 * listen  
     监听端口  
+    \$ip为监听的IP地址  
     \$port为监听的端口号  
+    **PS**：`listen`有多种写法，指定IP+端口来针对指定的一个入口，可以只指定端口来监听主机的所有IP地址，甚至可以指定到网段  
 * server_name  
     监听地址，nginx面向客户端的地址或域名  
-    **PS**:配置`server_name`和`listen`后，nginx将监听所有发送到这个IP地址+端口号的所有请求，然后根据下面location块的规则进行转发  
+    \$domain 为域名（IP地址或主机名也可以）  
+    **PS**：配置`server_name`和`listen`后，nginx将监听所有发送到这个IP地址/域名+端口号的所有请求，然后根据下面location块的规则进行转发  
+    **PS**：很多情况下容易把`server_name`理解成IP地址，理由是域名映射过来也是IP地址嘛，但实际上是不对的，域名和IP地址是多对一的关系，如果监听某一IP地址，建议写在`listen`字段中 
 ###### 3.3.2 location块
 ```bash
 http {
@@ -223,6 +232,7 @@ http {
 * root  
     项目的根目录，最终返回的uri是 root路径+location路径  
     **PS**:可以定义在上级块中，若locations没有会依次往上级块中寻找继承  
+    **PS**：root和proxy_pass和alias不共存  
 * alias  
     目录别名，最终返回的uri为 用alias路径替换location中路径部分的uri  
     **PS**:alias需要与location一致，若location末尾带/,则alias必须带  
@@ -230,7 +240,7 @@ http {
 * index  
     默认页，默认值为index.html
 * proxy_pass  
-    代理，详见[nginx配置详解（二）]()
+    反向代理，详见[nginx配置详解（二）]()
 * deny   
     拒绝这类ip访问，可以指定ip或网段  
     ```bash

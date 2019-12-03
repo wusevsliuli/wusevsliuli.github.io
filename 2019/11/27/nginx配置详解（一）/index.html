@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/11/27/nginx配置详解（一）/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84.png">
 <meta property="og:image" content="http://yoursite.com/2019/11/27/nginx配置详解（一）/%E8%BD%AE%E8%AF%A2%E6%A8%A1%E5%BC%8F.png">
 <meta property="og:image" content="http://yoursite.com/2019/11/27/nginx配置详解（一）/%E5%8A%A0%E6%9D%83%E8%BD%AE%E8%AF%A2%E6%A8%A1%E5%BC%8F.png">
-<meta property="og:updated_time" content="2019-11-21T09:30:32.893Z">
+<meta property="og:updated_time" content="2019-11-21T11:20:57.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx配置详解（一）">
 <meta name="twitter:description" content="Nginx是一个功能丰富的Web服务器。它支持反向代理服务，内置了负载均衡和Web缓存功能。">
@@ -230,7 +230,7 @@
 <li>accept_mutex<br>  使用串行的方式来处理到达的新连接，防止<a href="https://www.jianshu.com/p/1cdd61a6e3ea" target="_blank" rel="noopener">惊群现象</a>发生，默认为on<br>  <strong>PS</strong>: 对nginx来说，worker_processes一般会设置成CPU个数，即便发生惊群现象影响也较小（相对于Apache几百个进程来说），主要表现为上下文切换增多或负载上升，如果<strong>网站访问量较大</strong>，为了系统吞吐量可以设为off  </li>
 <li>multi_accept<br>  设置一个进程是否同时接受多个网络连接，默认为off  </li>
 <li>use<br>  nginx的事件驱动模型<br>  $model取值有 <code>select</code>|<code>poll</code>|<code>kqueue</code>|<code>epoll</code>|<code>resig</code>|<code>/dev/poll</code>|<code>eventport</code><br>  <strong>PS</strong>: 一般不更改，nginx会自动选择一个最适合运行nginx操作系统的。<br>  <strong>PS</strong>: 如果选择的是kqueue，则将忽略multi_accept的配置</li>
-<li>worker_connections<br>  每个worker进程允许同时建立的外部链接的数量，默认为512。<br>  <strong>PS</strong>:worker_connections不能随便设置，需要考虑系统内存和操作系统的”进程最大可打开文件数”(linux可通过[<em>ulimit -n</em>]命令查看，一般为65535)，worker_commections的值最好不要超过这个数。<br>  <strong>PS</strong>:<code>worker_processes</code>配置的是有多少个worker，<code>worker_connections</code>配置的是每个worker能建立的连接数  <h4 id="3-http块"><a href="#3-http块" class="headerlink" title="3. http块"></a>3. http块</h4><h5 id="3-1-http全局块"><a href="#3-1-http全局块" class="headerlink" title="3.1 http全局块"></a>3.1 http全局块</h5>配置示例<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include <span class="variable">$type</span>;</span><br><span class="line">    include <span class="variable">$path</span>;</span><br><span class="line">    default_type <span class="variable">$type</span>;</span><br><span class="line">    log_format <span class="variable">$name</span> <span class="variable">$format</span>;</span><br><span class="line">    access_log on|off;</span><br><span class="line">    access_log <span class="variable">$path</span> <span class="variable">$name</span>;</span><br><span class="line">    sendfile on|off;</span><br><span class="line">    sendfile_max_chunk <span class="variable">$size</span>;</span><br><span class="line">    keepalive_timeout <span class="variable">$num</span>;</span><br><span class="line">    error_page <span class="variable">$num</span> <span class="variable">$url</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>worker_connections<br>  每个worker进程允许同时建立的外部链接的数量，默认为512。<br>  <strong>PS</strong>:worker_connections不能随便设置，需要考虑系统内存和操作系统的”进程最大可打开文件数”(linux可通过[<em>ulimit -n</em>]命令查看，一般为65535)，worker_commections的值最好不要超过这个数。<br>  <strong>PS</strong>:<code>worker_processes</code>配置的是有多少个worker，<code>worker_connections</code>配置的是每个worker能建立的连接数  <h4 id="3-http块"><a href="#3-http块" class="headerlink" title="3. http块"></a>3. http块</h4><h5 id="3-1-http全局块"><a href="#3-1-http全局块" class="headerlink" title="3.1 http全局块"></a>3.1 http全局块</h5>配置示例<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include <span class="variable">$type</span>;</span><br><span class="line">    include <span class="variable">$path</span>;</span><br><span class="line">    default_type <span class="variable">$type</span>;</span><br><span class="line">    log_format <span class="variable">$name</span> <span class="variable">$format</span>;</span><br><span class="line">    access_log on|off;</span><br><span class="line">    access_log <span class="variable">$path</span> <span class="variable">$name</span>;</span><br><span class="line">    sendfile on|off;</span><br><span class="line">    sendfile_max_chunk <span class="variable">$size</span>;</span><br><span class="line">    underscores_in_headers on|off;</span><br><span class="line">    keepalive_timeout <span class="variable">$num</span>;</span><br><span class="line">    error_page <span class="variable">$num</span> <span class="variable">$url</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -243,6 +243,7 @@
 <li>access_log<br>  http访问记录日志<br>  on|off 表示关闭http记录访问日志<br>  $path表示日志文件路径<br>  $format为上面<code>log_format</code>设置的日志格式，不填即为默认<br>  <strong>PS</strong>:<code>access_log</code>为http访问记录日志，<code>error_log</code>为nginx操作日志  </li>
 <li>sendfile<br>  是否允许调用系统的sendfile方法传输文件，默认为off。可以server块或location块中重设<br>  <strong>PS</strong>:sendfile方法是直接获取文件句柄后读取文件再通过socket传输到网络中，所以仅当nginx作为静态文件服务器时，开启sendfile能大大提高nginx的性能。当nginx作为反向代理时，无法直接获取文件句柄，此时sendfile是无效的  </li>
 <li>sendfile_max_chunk<br>  调用sendfile方法时，每个进程每次调用传输文件大小限制，默认为0，即不设上限<br>  $size为文件大小  </li>
+<li>underscores_in_headers<br>  是否不忽略带_的请求参数，默认是off，当为off时，客户端请求的参数中带有_时，这个参数就会被忽略，服务器端不会收到该参数<br>  <strong>e.g.</strong> 客户端请求{“user_name”: “admin”}，当该字段为off时，通过nginx转发后的服务器将收不到”user_name”</li>
 <li>keepalive_timeout<br>  连接超时时间，允许在此时间内客户端通过同一链接再次发送数据，默认为75(秒)，可以在http，server，location块设置。<br>  http/https是个无状态协议，同时也是个tcp协议，tcp协议有短链接和长链接之分。短链接情况下，客户端向服务器发送一个请求后，服务器响应完毕就断开tcp链接；长链接情况下，服务响应完毕后并不立即断开tcp链接，允许客户端利用同一链接再次发送请求，减少了重新建立链接的开销<br>  <strong>PS</strong>:在此时间内若服务器没有返回将报 <em>HTTP 408(Request Timed Out)</em> 错误<br>  <strong>PS</strong>:由于在keepalive期间，要一直保持链接，就会一直占用资源，因此不能设置过大  </li>
 <li>error_page<br>  接收到某种http响应code，重定向返回的页面<br>  error_page有多种使用方法    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error_page 404 /404.html  <span class="comment"># 404状态返回时，跳转至404.html页面  </span></span><br><span class="line">error_page 404 500 =200 /index.html  <span class="comment"># 404或500状态返回时，跳转至index.html页面并且状态变为200</span></span><br></pre></td></tr></table></figure>
 
@@ -332,9 +333,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/11/28/RPC-远程过程调用-基础/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          RPC(远程过程调用)基础
+        
+      </div>
+    </a>
   
-    <a href="/2019/10/29/梯度下降算法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">梯度下降算法</div>
+  
+    <a href="/2019/11/26/windows下pycrypto安装详解/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">windows下pycrypto安装详解</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -477,15 +487,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PyQt5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">celery</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">rabbitmq</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">微服务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -497,11 +511,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">pandas</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color1">PyQt5</a>
               </li>
             
             <div class="clearfix"></div>
